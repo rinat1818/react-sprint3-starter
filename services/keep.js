@@ -59,25 +59,26 @@ function _createKeeps() {
     type: 'NoteTxt', 
     isPinned: true, 
     style: { 
-      backgroundColor: '#00d' 
+      backgroundColor: 'rgb(34, 183, 32)' 
     }, 
     info: { 
       txt: 'Fullstack Me Baby!' 
     } 
   }, 
+//   { 
+//     id: 'n102', 
+//     createdAt: 1112223, 
+//     type: 'NoteImg', 
+//     isPinned: false, 
+//     style: { 
+//       backgroundColor: '#0d0' 
+//     }, 
+//     info: { 
+//       url: 'img/h.png', 
+//       title: 'Bobi and Me' 
+//     } 
+//   },
   { 
-    id: 'n102', 
-    createdAt: 1112223, 
-    type: 'NoteImg', 
-    isPinned: false, 
-    style: { 
-      backgroundColor: '#0d0' 
-    }, 
-    info: { 
-      url: 'img/h.png', 
-      title: 'Bobi and Me' 
-    } 
-  },  { 
     id: 'n103', 
     createdAt: 1112222, 
     type: 'NoteTxt', 
@@ -86,22 +87,46 @@ function _createKeeps() {
       backgroundColor: '#00d' 
     }, 
     info: { 
-      txt: 'Fullstack Me Baby!' 
+      txt: 'by!' 
     } 
   }, 
   { 
-    id: 'n104', 
-    createdAt: 1112223, 
-    type: 'NoteImg', 
-    isPinned: false, 
+    id: 'n105', 
+    createdAt: 1112222, 
+    type: 'NoteTxt', 
+    isPinned: true, 
     style: { 
-      backgroundColor: '#0d0' 
+      backgroundColor: 'rgb(214, 45, 191)' 
     }, 
     info: { 
-      url: 'img/h.png', 
-      title: 'Bobi and Me' 
+      txt: 'Fullst!' 
     } 
   }, 
+  { 
+    id: 'n106', 
+    createdAt: 1112222, 
+    type: 'NoteTxt', 
+    isPinned: true, 
+    style: { 
+      backgroundColor: 'rgb(223, 124, 25)' 
+    }, 
+    info: { 
+      txt: 'rinat!' 
+    } 
+  }, 
+//   { 
+//     id: 'n104', 
+//     createdAt: 1112223, 
+//     type: 'NoteImg', 
+//     isPinned: false, 
+//     style: { 
+//       backgroundColor: '#0d0' 
+//     }, 
+//     info: { 
+//       url: 'img/h.png', 
+//       title: 'Bobi and Me' 
+//     } 
+//   }, 
 //   { 
 //     id: 'n103', 
 //     createdAt: 1112224, 

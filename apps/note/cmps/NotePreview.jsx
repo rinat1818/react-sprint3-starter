@@ -32,16 +32,22 @@ import { NoteTxt } from "./NoteTxt.jsx";
 //     </section >
 // }
 
-export function NotePreview({ notes }) {
+export function NotePreview({ notes,onRemoveNotes }) {
   return (
     <section className="note-list">
       <ul className="fluid-grid">
         {notes.map(note => (
-          <li key={note.id}>
+          <li key={note.id}
+            style={{ backgroundColor: note.style.backgroundColor }}>
+           
             <Link to={`/note/${note.id}`}>
               {note.type === 'NoteTxt' && <NoteTxt note={note} />}
               {note.type === 'NoteImg' && <NoteImg note={note} />}
             </Link>
+            <button
+           
+              onClick={() => onRemoveNotes(note.id)}
+              className="btn-remove">x</button>
           </li>
         ))}
       </ul>

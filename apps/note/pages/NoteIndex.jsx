@@ -21,6 +21,11 @@ export function NoteIndex() {
             .then(setNotes)
     }
 
+      function removeNotes(notekId) {
+        return keepsServis.remove(notekId)
+            .then(() => setNotes(prev => prev.filter(note=> note.id !== notekId)))
+    }
+
 
     if (!notes) return <div className="loader">yyy</div>
 
@@ -28,7 +33,9 @@ export function NoteIndex() {
     return <div className="book-indx">
 
         <NotePreview
-            notes={notes} />
+            notes={notes} 
+             onRemoveNotes={removeNotes}
+            />
 
 
     </div>
