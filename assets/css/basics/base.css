@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.note-list ul {
+    display: grid;
+
+    gap: 1em;
+    list-style: none;
+    padding: 5px;
+    /* background-color: aliceblue; */
+
+}
+
+.note-list li {
+    background-color: aqua;
+    border: 2px solid rgb(17, 30, 170);
+}
+.title{
+    margin-top: 11px;
+    margin-bottom: 11px;
+    border-bottom: 1px solid rgb(117, 114, 114);
+  padding-bottom: 5px;
+}
+
+
+.menu-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;   /* או left */
+  padding: 7px;
+   font-size: 40px;
+   border-radius: 50px;
+     border: none;
+}
+.add-button{
+    background-color: blue;
+     position: fixed;
+  bottom: 20px;
+  left: 20px;   /* או left */
+  padding: 10px;
+ 
+   font-size: 45px;
+   border-radius: 17px;
+     border: none;
+}
