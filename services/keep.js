@@ -14,12 +14,13 @@ export const keepsServis = {
     get,
     remove,
     save,
-    getEmptyCar,
+    // getEmptyCar,
     getDefaultFilter,
     getSpeedStats,
     getVendorStats,
     fetchBooks,
-    getEmptyBook
+    // getEmptyBook,
+    getEmptyNote
 }
 
 function query(filterBy = {}) {
@@ -44,6 +45,37 @@ function remove(bookId) {
 }
 function getDefaultFilter(filterBy = { txt: '', minSpeed: 0 }) {
     return { txt: filterBy.txt, minSpeed: filterBy.minSpeed }
+}
+
+
+// function getEmptyNote(title = '', description = '', amount = 0) {
+//   return {
+//     createdAt,
+//     type,
+//     isPinned,
+//     style: {
+//       backgroundColo,
+//     },
+//     info: {
+//       txt,
+//     }
+   
+//   }
+// }
+
+function getEmptyNote(txt = '') {
+  return {
+    // id: utilService.makeId(),
+    createdAt: Date.now(),
+    type: 'NoteTxt',
+    isPinned: false,
+    style: {
+      backgroundColor: '#fff'
+    },
+    info: {
+      txt
+    }
+  }
 }
 
 function _createKeeps() {
@@ -114,19 +146,19 @@ function _createKeeps() {
       txt: 'rinat!' 
     } 
   }, 
-//   { 
-//     id: 'n104', 
-//     createdAt: 1112223, 
-//     type: 'NoteImg', 
-//     isPinned: false, 
-//     style: { 
-//       backgroundColor: '#0d0' 
-//     }, 
-//     info: { 
-//       url: 'img/h.png', 
-//       title: 'Bobi and Me' 
-//     } 
-//   }, 
+  { 
+    id: 'n104', 
+    createdAt: 1112223, 
+    type: 'NoteImg', 
+    isPinned: false, 
+    style: { 
+      backgroundColor: '#0d0' 
+    }, 
+    info: { 
+      url: 'img/h.png', 
+      title: 'Bobi and Me' 
+    } 
+  }, 
 //   { 
 //     id: 'n103', 
 //     createdAt: 1112224, 
@@ -253,12 +285,12 @@ function _getCarCountByVendorMap(cars) {
     }, {})
     return carCountByVendorMap
 }
-function save(car) {
-    if (car.id) {
-        return storageService.put(CAR_KEY, car)
+function save(note) {
+    if (note.id) {
+        return storageService.put(CAR_KEY, note)
     } else {
         // book.thubnail=""
-        return storageService.post(CAR_KEY, car)
+        return storageService.post(CAR_KEY, note)
     }
 }
 

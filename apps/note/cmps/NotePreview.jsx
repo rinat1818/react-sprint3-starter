@@ -51,8 +51,10 @@ export function NotePreview({ notes,onRemoveNotes }) {
           </li>
         ))}
       </ul>
-
-      <button className="add-button">+</button>
+{/* <button className="add-button">+</button> */}
+<Link to="/note/edit">
+  <button className="add-button">+</button>
+</Link>
     </section>
   )
 }

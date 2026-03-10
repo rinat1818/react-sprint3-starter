@@ -8,7 +8,7 @@ const { useState, useEffect } = React
         export function NoteDetails() {
             const [note, setNote] = useState(null)
             const params = useParams()
-             const [notes, setNotes] = useState(null)
+            //  const [notes, setNotes] = useState(null)
             
     useEffect(() => {
         keepsServis.get(params.id).then(setNote)
@@ -28,10 +28,10 @@ const { useState, useEffect } = React
         // שמירה אוטומטית
         keepsServis.save(updatedNote)
     }
-    function removeNotes(notekId) {
-            return keepsServis.remove(notekId)
-                .then(() => setNotes(prev => prev.filter(note=> note.id !== notekId)))
-        }
+    // function removeNotes(notekId) {
+    //         return keepsServis.remove(notekId)
+    //             .then(() => setNotes(prev => prev.filter(note=> note.id !== notekId)))
+    //     }
     
 
 
