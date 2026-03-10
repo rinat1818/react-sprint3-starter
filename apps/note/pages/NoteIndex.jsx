@@ -2,8 +2,9 @@ const { useState, useEffect } = React
 
 
 import { keepsServis } from "../../../services/keep.js";
-import { NoteList } from "../cmps/NoteList.jsx";
-
+// import { NoteList } from "../cmps/NotePreview.jsx";
+// import { NotePreview } from "../cmps/NoteTxt.jsx";
+import { NotePreview } from "../cmps/NotePreview.jsx";
 
 export function NoteIndex() {
 
@@ -26,7 +27,7 @@ export function NoteIndex() {
 
     return <div className="book-indx">
 
-        <NoteList
+        <NotePreview
             notes={notes} />
 
 

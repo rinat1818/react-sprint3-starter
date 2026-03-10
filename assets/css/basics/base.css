@@ -64,3 +64,20 @@ img {
    border-radius: 17px;
      border: none;
 }
+.note-img{
+    /* height: 100px; */
+    width: 100px;
+}
+.note-input {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 18px;
+}
+
+.note-input {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 18px;
+}
