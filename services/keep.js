@@ -155,7 +155,7 @@ function _createKeeps() {
       backgroundColor: '#0d0' 
     }, 
     info: { 
-      url: 'img/h.png', 
+      url: '/img/h.png', 
       title: 'Bobi and Me' 
     } 
   }, 
