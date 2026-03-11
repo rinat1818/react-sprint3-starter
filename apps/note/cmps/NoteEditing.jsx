@@ -78,6 +78,7 @@ export function NoteEdit() {
             >
                 <label htmlFor="txt">Note:</label>
                 <input
+                className="note-input"
                     type="text"
                     id="txt"
                     name="txt"

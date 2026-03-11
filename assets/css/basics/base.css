@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    /* text-align: center; */
 }
 
 h1,
@@ -81,6 +82,27 @@ img {
     background: none;
     font-size: 18px;
 }
+.input-edit {
+    margin-top: 15px;
+    
+    /* background-color: aqua; */
+    
+}
+.note-input {
+    margin:0 auto;
+    text-align: center;
+    border: 3px solid rgb(200, 19, 19);
+  /* width: 100%; */
+  padding: 10px;
+  font-size: 18px;
+  /* border: none; */
+  outline: none;
+  border-radius: 8px;
+}
+/* .i1{
+    margin-top: 15px;
+
+} */
 
 
 .Color-changer-button{
