@@ -1,6 +1,6 @@
 const { Link } = ReactRouterDOM
 
-import { keepsServis } from "../../../services/keep.js";
+import { keepsServis } from "../services/keep.js";
 
 const { useParams } = ReactRouterDOM
 const { useState, useEffect } = React
