@@ -81,3 +81,10 @@ img {
   background: none;
   font-size: 18px;
 }
+
+
+.Color-changer-button{
+    /* background-color: rgb(200, 140, 19); */
+    padding: 10px;
+    border-radius: 50%;
+}
