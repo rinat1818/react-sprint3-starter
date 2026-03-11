@@ -1,14 +1,11 @@
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
-// import { storageService } from './async-storage.service.js'
 
-// console.log(carService);
-
-const CAR_KEY = 'keepdb'
-
+const KEEP_KEY = 'keepdb'
+// CAR_KEY
 
 _createKeeps()
-// export const booksServis = {query}
+
 export const keepsServis = {
     query,
     get,
@@ -24,7 +21,7 @@ export const keepsServis = {
 }
 
 function query(filterBy = {}) {
-    return storageService.query(CAR_KEY).then(books => {
+    return storageService.query(KEEP_KEY).then(books => {
         if (filterBy.txt) {
             const regExp = new RegExp(filterBy.txt, 'i')
             books = books.filter(book => regExp.test(book.title))
@@ -34,14 +31,14 @@ function query(filterBy = {}) {
 }
 
 function get(carId) {
-    return storageService.get(CAR_KEY, carId)
+    return storageService.get(KEEP_KEY, carId)
         .then(car => {
             car = _setNextPrevCarId(car)
             return car
         })
 }
 function remove(bookId) {
-    return storageService.remove(CAR_KEY, bookId)
+    return storageService.remove(KEEP_KEY, bookId)
 }
 function getDefaultFilter(filterBy = { txt: '', minSpeed: 0 }) {
     return { txt: filterBy.txt, minSpeed: filterBy.minSpeed }
@@ -79,7 +76,7 @@ function getEmptyNote(txt = '') {
 }
 
 function _createKeeps() {
-    let notes = utilService.loadFromStorage(CAR_KEY)
+    let notes = utilService.loadFromStorage(KEEP_KEY)
     console.log(notes);
 
     if (!notes || !notes.length) {
@@ -183,11 +180,11 @@ function _createKeeps() {
         //     const vendor = vendors[utilService.getRandomIntInclusive(0, vendors.length - 1)]
         //     cars.push(_createCar(vendor, utilService.getRandomIntInclusive(80, 300)))
         // }
-        utilService.saveToStorage(CAR_KEY, notes)
+        utilService.saveToStorage(KEEP_KEY, notes)
     }
 }
 function _setNextPrevCarId(car) {
-    return storageService.query(CAR_KEY).then((cars) => {
+    return storageService.query(KEEP_KEY).then((cars) => {
         const carIdx = cars.findIndex((currCar) => currCar.id === car.id)
         const nextCar = cars[carIdx + 1] ? cars[carIdx + 1] : cars[0]
         const prevCar = cars[carIdx - 1] ? cars[carIdx - 1] : cars[cars.length - 1]
@@ -196,26 +193,26 @@ function _setNextPrevCarId(car) {
         return car
     })
 }
-function getEmptyCar(vendor = '', maxSpeed = '') {
-    return { vendor, maxSpeed }
-}
-function getEmptyBook(title = '', description = '', amount = 0) {
-  return {
-    title,
-    description,
-    listPrice: {
-      amount,
-      currencyCode: 'EUR',
-      isOnSale: false
-    }
-  }
-}
+// function getEmptyCar(vendor = '', maxSpeed = '') {
+//     return { vendor, maxSpeed }
+// }
+// function getEmptyBook(title = '', description = '', amount = 0) {
+//   return {
+//     title,
+//     description,
+//     listPrice: {
+//       amount,
+//       currencyCode: 'EUR',
+//       isOnSale: false
+//     }
+//   }
+// }
 function getDefaultFilter(filterBy = { txt: '', minSpeed: 0 }) {
     return { txt: filterBy.txt, minSpeed: filterBy.minSpeed }
 }
 
 function getSpeedStats() {
-    return storageService.query(CAR_KEY)
+    return storageService.query(KEEP_KEY)
         .then(cars => {
             const carCountBySpeedMap = _getCarCountBySpeedMap(cars)
             const data = Object.keys(carCountBySpeedMap).map(speedName => ({ title: speedName, value: carCountBySpeedMap[speedName] }))
@@ -224,7 +221,7 @@ function getSpeedStats() {
 }
 
 function getVendorStats() {
-    return storageService.query(CAR_KEY)
+    return storageService.query(KEEP_KEY)
         .then(cars => {
             const carCountByVendorMap = _getCarCountByVendorMap(cars)
             const data = Object.keys(carCountByVendorMap)
@@ -257,7 +254,7 @@ function _createCar(vendor, maxSpeed = 250) {
 }
 
 function _setNextPrevCarId(car) {
-    return storageService.query(CAR_KEY).then((cars) => {
+    return storageService.query(KEEP_KEY).then((cars) => {
         const carIdx = cars.findIndex((currCar) => currCar.id === car.id)
         const nextCar = cars[carIdx + 1] ? cars[carIdx + 1] : cars[0]
         const prevCar = cars[carIdx - 1] ? cars[carIdx - 1] : cars[cars.length - 1]
@@ -287,10 +284,10 @@ function _getCarCountByVendorMap(cars) {
 }
 function save(note) {
     if (note.id) {
-        return storageService.put(CAR_KEY, note)
+        return storageService.put(KEEP_KEY, note)
     } else {
         // book.thubnail=""
-        return storageService.post(CAR_KEY, note)
+        return storageService.post(KEEP_KEY, note)
     }
 }
 
