@@ -70,7 +70,7 @@ function getEmptyNote(txt = '') {
     type: 'NoteTxt',
     isPinned: false,
     style: {
-      backgroundColor: '#ff008c'
+      backgroundColor: '#ffffff'
     },
     info: {
       txt
@@ -91,7 +91,7 @@ function _createKeeps() {
     type: 'NoteTxt', 
     isPinned: true, 
     style: { 
-      backgroundColor: 'rgb(34, 183, 32)' 
+      backgroundColor: '#f39f76' 
     }, 
     info: { 
       txt: 'Fullstack Me Baby!' 
@@ -116,7 +116,7 @@ function _createKeeps() {
     type: 'NoteTxt', 
     isPinned: true, 
     style: { 
-      backgroundColor: '#00d' 
+      backgroundColor: '#fff8b8' 
     }, 
     info: { 
       txt: 'by!' 
@@ -128,7 +128,7 @@ function _createKeeps() {
     type: 'NoteTxt', 
     isPinned: true, 
     style: { 
-      backgroundColor: 'rgb(214, 45, 191)' 
+      backgroundColor: '#f39f76' 
     }, 
     info: { 
       txt: 'Fullst!' 
@@ -140,7 +140,7 @@ function _createKeeps() {
     type: 'NoteTxt', 
     isPinned: true, 
     style: { 
-      backgroundColor: 'rgb(223, 124, 25)' 
+      backgroundColor: '#fff8b8' 
     }, 
     info: { 
       txt: 'rinat!' 
@@ -152,7 +152,7 @@ function _createKeeps() {
     type: 'NoteImg', 
     isPinned: false, 
     style: { 
-      backgroundColor: '#0d0' 
+      backgroundColor: '#f39f76' 
     }, 
     info: { 
       url: '/img/h.png', 

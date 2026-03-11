@@ -5,6 +5,7 @@ import { keepsServis } from "../../../services/keep.js";
 // import { NoteList } from "../cmps/NotePreview.jsx";
 // import { NotePreview } from "../cmps/NoteTxt.jsx";
 import { NotePreview } from "../cmps/NotePreview.jsx";
+import { NoteDetails } from "../../../pages/NoteDetails.jsx";
 
 export function NoteIndex() {
 
@@ -21,9 +22,9 @@ export function NoteIndex() {
             .then(setNotes)
     }
 
-      function removeNotes(notekId) {
+    function removeNotes(notekId) {
         return keepsServis.remove(notekId)
-            .then(() => setNotes(prev => prev.filter(note=> note.id !== notekId)))
+            .then(() => setNotes(prev => prev.filter(note => note.id !== notekId)))
     }
 
 
@@ -31,11 +32,11 @@ export function NoteIndex() {
 
 
     return <div className="book-indx">
-
+        {/* <NoteDetails /> */}
         <NotePreview
-            notes={notes} 
-             onRemoveNotes={removeNotes}
-            />
+            notes={notes}
+            onRemoveNotes={removeNotes}
+        />
 
 
     </div>

@@ -55,31 +55,31 @@ img {
 }
 .add-button{
     background-color: blue;
-     position: fixed;
-  bottom: 20px;
-  left: 20px;   /* או left */
-  padding: 10px;
- 
-   font-size: 45px;
-   border-radius: 17px;
-     border: none;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;   /* או left */
+    padding: 10px;
+    
+    font-size: 45px;
+    border-radius: 17px;
+    border: none;
 }
 .note-img{
     /* height: 100px; */
     width: 100px;
 }
 .note-input {
-  border: none;
-  outline: none;
-  background: none;
-  font-size: 18px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 18px;
 }
 
 .note-input {
-  border: none;
-  outline: none;
-  background: none;
-  font-size: 18px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 18px;
 }
 
 
@@ -88,3 +88,20 @@ img {
     padding: 10px;
     border-radius: 50%;
 }
+.note{
+    /* border: 5px solid #7b1919; */
+    
+    display: grid;
+    grid-template-columns: repeat(5, 110px);
+    grid-template-rows: repeat(3,auto);
+    /* background-color: aqua; */
+    
+}
+.note-list li{
+    border-radius: 8px;
+border: 1px solid gainsboro;
+}
+/* .note-list{
+    border-radius: 8px;
+    
+} */

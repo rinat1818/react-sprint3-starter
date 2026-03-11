@@ -4,13 +4,14 @@ import { NoteImg } from "./NoteImg.jsx";
 // import { NotePreview } from "./NoteTxt.jsx"
 import { NoteTxt } from "./NoteTxt.jsx";
 
-
+import { NoteEdit } from "./NoteEditing.jsx";
 
 
 export function NotePreview({ notes,onRemoveNotes }) {
   return (
     <section className="note-list">
-      <ul className="fluid-grid">
+      <NoteEdit/>
+      <ul className="note">
         {notes.map(note => (
           <li key={note.id}
             style={{ backgroundColor: note.style.backgroundColor }}>
@@ -26,10 +27,10 @@ export function NotePreview({ notes,onRemoveNotes }) {
           </li>
         ))}
       </ul>
-{/* <button className="add-button">+</button> */}
-<Link to="/note/edit">
+
+{/* <Link to="/note/edit">
   <button className="add-button">+</button>
-</Link>
+</Link> */}
     </section>
   )
 }

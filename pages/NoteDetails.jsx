@@ -18,6 +18,7 @@ export function NoteDetails() {
     const params = useParams()
 
     useEffect(() => {
+        if(!params.id )return
         keepsServis.get(params.id).then(setNote)
     }, [params.id])
 
@@ -44,6 +45,7 @@ export function NoteDetails() {
         setNote(updatedNote)
         keepsServis.save(updatedNote)
     }
+    // return <h1>hhh</h1>
 
     if (!note) return <div>loading...</div>
 
