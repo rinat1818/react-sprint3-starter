@@ -10,7 +10,7 @@ import { NoteDetails } from "../../../pages/NoteDetails.jsx";
 export function NoteIndex() {
 
     const [notes, setNotes] = useState(null)
-
+// const [filterBy, setFilterBy] = useState(keepsServis.getDefaultFilter())
     useEffect(() => {
         loadNotes()
 

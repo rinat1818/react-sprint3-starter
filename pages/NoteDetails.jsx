@@ -63,8 +63,10 @@ export function NoteDetails() {
                     type="text"
                     value={note.info.txt || ''}
                     onChange={handleChange1}
-                />
-            )}
+                    />
+                )
+            }
+            {/* {<h1>eeee</h1>} */}
 
             {colors.map(color => (
                 <button

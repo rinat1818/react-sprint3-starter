@@ -91,39 +91,69 @@ img {
 .note-input {
     margin:0 auto;
     text-align: center;
-    border: 3px solid rgb(200, 19, 19);
-  /* width: 100%; */
-  padding: 10px;
-  font-size: 18px;
-  /* border: none; */
-  outline: none;
-  border-radius: 8px;
+    /* border: 3px solid rgb(200, 19, 19); */
+    /* width: 100%; */
+    padding: 10px;
+    font-size: 18px;
+    /* border: none; */
+    outline: none;
+    border-radius: 8px;
 }
 /* .i1{
     margin-top: 15px;
-
-} */
-
-
-.Color-changer-button{
-    /* background-color: rgb(200, 140, 19); */
-    padding: 10px;
-    border-radius: 50%;
-}
-.note{
-    /* border: 5px solid #7b1919; */
     
-    display: grid;
-    grid-template-columns: repeat(5, 110px);
-    grid-template-rows: repeat(3,auto);
-    /* background-color: aqua; */
+    } */
     
-}
-.note-list li{
-    border-radius: 8px;
-border: 1px solid gainsboro;
-}
-/* .note-list{
-    border-radius: 8px;
     
-} */
+    .Color-changer-button{
+        /* background-color: rgb(200, 140, 19); */
+        padding: 10px;
+        border-radius: 50%;
+    }
+    .note{
+        /* border: 5px solid #7b1919; */
+        display: grid; 
+        grid-template-columns: repeat(3, 110px);
+        grid-template-rows: repeat(3,auto);
+        /* background-color: aqua; */
+        /* display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    gap: 10px;
+         */
+    }
+    .note-list li{
+        border-radius: 8px;
+        border: 1px solid gainsboro;
+    }
+    .note-list {
+        
+    }
+    /* .note-list{
+        border-radius: 8px;
+        
+        } */
+        .note-container{
+     border: 3px solid rgb(200, 19, 19);
+
+ }
+ .note-extra{
+    /* display: none; */
+ }
+ .none{
+    display: none;
+ }
+ .app-note-header{
+      display: flex;
+    justify-content: space-between;
+    /* padding: 1em; */
+    /* background: var(--bg1); */
+    /* background-color: black; */
+    color: antiquewhite;
+    /* height:50px ; */
+    background-color: aqua;
+ }
+ nav a {
+    margin: .5em;
+}

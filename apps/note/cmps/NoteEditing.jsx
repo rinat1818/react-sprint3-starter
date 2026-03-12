@@ -9,6 +9,8 @@ export function NoteEdit() {
 
     const [note, setNote] = useState(keepsServis.getEmptyNote())
     // console.log(note);
+
+    const [showColors, setShowColors] = useState(false)
     const colors = [
         '#ffffff',
         '#faafa8',
@@ -22,7 +24,7 @@ export function NoteEdit() {
         '#f6e2dd',
         '#e9e3d4',
         '#efeff1',
-        
+
     ]
 
 
@@ -38,6 +40,19 @@ export function NoteEdit() {
             }
         }))
     }
+    function showBtn() {
+        const elBtn = document.querySelector('.note-extra')
+        elBtn.classList.remove('none')
+        const elH1 = document.querySelector('.input-title')
+        elH1.classList.remove('none')
+    }
+    function hideGallery() {
+        const elBtn = document.querySelector('.note-extra')
+        elBtn.classList.add('none')
+        const elH1 = document.querySelector('.input-title')
+        elH1.classList.add('none')
+    }
+
 
     function onSaveNote(ev) {
         ev.preventDefault()
@@ -75,30 +90,63 @@ export function NoteEdit() {
           
             </Link> */}
             <form onSubmit={onSaveNote}
+
             >
-                <label htmlFor="txt">Note:</label>
-                <input
-                className="note-input"
-                    type="text"
-                    id="txt"
-                    name="txt"
-                    placeholder="write note"
-                    value={note.info.txt}
-                    onChange={handleChange}
-                    style={{ backgroundColor: note.style.backgroundColor }}
+                {/* <label htmlFor="txt">Note:</label> */}
+                <div className="note-container"
+                    style={{ backgroundColor: note.style.backgroundColor }}>
 
-                />
+                    <div className='input-title none' >{<h1>title</h1>}</div>
 
-                <button>Save</button>
-                {colors.map(color => (
+                    {/* {hideGallery()} */}
+                    <input
+                        className="note-input"
+                        type="text"
+                        id="txt"
+                        name="txt"
+                        placeholder="write note"
+                        value={note.info.txt}
+                        onChange={handleChange}
+                        onClick={showBtn}
+
+                    />
+
+                    <div className="note-extra none">
+                        {/* {var nite = d} */}
+                        <button onClick={hideGallery}>Save</button>
+                        {/* <button >🎨</button> */}
+                        <button type="button" onClick={() => setShowColors(prev => !prev)}>
+                            🎨
+                        </button>
+                        <button></button>
+
+                    </div>
+                </div>
+
+
+
+                {showColors && (
+                    <div className="color-picker">
+                        {colors.map(color => (
+                            <button
+                                type="button"
+                                className="Color-changer-button"
+                                key={color}
+                                style={{ backgroundColor: color }}
+                                onClick={() => changeColor(color)}
+                            ></button>
+                        ))}
+                    </div>
+                )}
+                {/* {colors.map(color => (
                     <button
                         type="button"
                         className="Color-changer-button"
                         key={color}
                         style={{ backgroundColor: color }}
-                        onClick={() => changeColor(color)}
+                        // onClick={() => changeColor(color)}
                     ></button>
-                ))}
+                ))} */}
                 {/* { <Link to="/note">
             <button >←</button>
           
