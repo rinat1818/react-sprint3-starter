@@ -9,13 +9,13 @@ import { MailIndex } from './apps/mail/pages/MailIndex.jsx'
 import { NoteIndex } from './apps/note/pages/NoteIndex.jsx'
 import { NoteDetails } from './pages/NoteDetails.jsx'
 import { NoteEdit } from './apps/note/cmps/NoteEditing.jsx'
-import { NoteHeader } from './cmps/NoteHeader.jsx'
-import { NoteSearch } from './apps/note/pages/NoteSearch.jsx'
+// import { NoteHeader } from './cmps/NoteHeader.jsx'
+// import { NoteSearch } from './apps/note/pages/NoteSearch.jsx'
 export function RootCmp() {
     return <Router>
         <section className="root-cmp">
             <AppHeader />
-           < NoteHeader/>
+           {/* < NoteHeader/> */}
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />

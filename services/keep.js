@@ -2,7 +2,7 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const KEEP_KEY = 'keepdb'
-// CAR_KEY
+// NOTE_KEY
 
 _createKeeps()
 
@@ -11,7 +11,7 @@ export const keepsServis = {
     get,
     remove,
     save,
-    // getEmptyCar,
+    // getEmptyNote,
     getDefaultFilter,
     getSpeedStats,
     getVendorStats,
@@ -20,21 +20,35 @@ export const keepsServis = {
     getEmptyNote
 }
 
+// function query(filterBy = {}) {
+//     return storageService.query(KEEP_KEY).then(books => {
+//         if (filterBy.txt) {
+//             const regExp = new RegExp(filterBy.txt, 'i')
+//             books = books.filter(book => regExp.test(book.title))
+//         }
+//         return books
+//     })
+// }
+
 function query(filterBy = {}) {
-    return storageService.query(KEEP_KEY).then(books => {
+    return storageService.query(KEEP_KEY).then(notes => {
         if (filterBy.txt) {
             const regExp = new RegExp(filterBy.txt, 'i')
-            books = books.filter(book => regExp.test(book.title))
+            notes = notes.filter(note => {
+                if (note.type === 'NoteTxt') return regExp.test(note.info.txt)
+                if (note.type === 'NoteImg') return regExp.test(note.info.title)
+                return false
+            })
         }
-        return books
+        return notes
     })
 }
 
-function get(carId) {
-    return storageService.get(KEEP_KEY, carId)
-        .then(car => {
-            car = _setNextPrevCarId(car)
-            return car
+function get(noteId) {
+    return storageService.get(KEEP_KEY, noteId)
+        .then(note => {
+            note = _setNextPrevNoteId(note)
+            return note
         })
 }
 function remove(bookId) {
@@ -178,22 +192,22 @@ function _createKeeps() {
         // const vendors = ['audu', 'fiak', 'subali', 'mitsu']
         // for (let i = 0; i < 6; i++) {
         //     const vendor = vendors[utilService.getRandomIntInclusive(0, vendors.length - 1)]
-        //     cars.push(_createCar(vendor, utilService.getRandomIntInclusive(80, 300)))
+        //     notes.push(_createNote(vendor, utilService.getRandomIntInclusive(80, 300)))
         // }
         utilService.saveToStorage(KEEP_KEY, notes)
     }
 }
-function _setNextPrevCarId(car) {
-    return storageService.query(KEEP_KEY).then((cars) => {
-        const carIdx = cars.findIndex((currCar) => currCar.id === car.id)
-        const nextCar = cars[carIdx + 1] ? cars[carIdx + 1] : cars[0]
-        const prevCar = cars[carIdx - 1] ? cars[carIdx - 1] : cars[cars.length - 1]
-        car.nextCarId = nextCar.id
-        car.prevCarId = prevCar.id
-        return car
+function _setNextPrevNoteId(note) {
+    return storageService.query(KEEP_KEY).then((notes) => {
+        const noteIdx = notes.findIndex((currNote) => currNote.id === note.id)
+        const nextNote = notes[noteIdx + 1] ? notes[noteIdx + 1] : notes[0]
+        const prevNote = notes[noteIdx - 1] ? notes[noteIdx - 1] : notes[notes.length - 1]
+        note.nextNoteId = nextNote.id
+        note.prevNoteId = prevNote.id
+        return note
     })
 }
-// function getEmptyCar(vendor = '', maxSpeed = '') {
+// function getEmptyNote(vendor = '', maxSpeed = '') {
 //     return { vendor, maxSpeed }
 // }
 // function getEmptyBook(title = '', description = '', amount = 0) {
@@ -207,80 +221,80 @@ function _setNextPrevCarId(car) {
 //     }
 //   }
 // }
-function getDefaultFilter(filterBy = { txt: '', minSpeed: 0 }) {
-    return { txt: filterBy.txt, minSpeed: filterBy.minSpeed }
+function getDefaultFilter() {
+    return { txt: '' }
 }
 
 function getSpeedStats() {
     return storageService.query(KEEP_KEY)
-        .then(cars => {
-            const carCountBySpeedMap = _getCarCountBySpeedMap(cars)
-            const data = Object.keys(carCountBySpeedMap).map(speedName => ({ title: speedName, value: carCountBySpeedMap[speedName] }))
+        .then(notes => {
+            const noteCountBySpeedMap = _getNoteCountBySpeedMap(notes)
+            const data = Object.keys(noteCountBySpeedMap).map(speedName => ({ title: speedName, value: noteCountBySpeedMap[speedName] }))
             return data
         })
 }
 
 function getVendorStats() {
     return storageService.query(KEEP_KEY)
-        .then(cars => {
-            const carCountByVendorMap = _getCarCountByVendorMap(cars)
-            const data = Object.keys(carCountByVendorMap)
+        .then(notes => {
+            const noteCountByVendorMap = _getNoteCountByVendorMap(notes)
+            const data = Object.keys(noteCountByVendorMap)
                 .map(vendor =>
                 ({
                     title: vendor,
-                    value: Math.round((carCountByVendorMap[vendor] / cars.length) * 100)
+                    value: Math.round((noteCountByVendorMap[vendor] / notes.length) * 100)
                 }))
             return data
         })
 }
 
-// function _createCars() {
-//     let cars = utilService.loadFromStorage(CAR_KEY)
-//     if (!cars || !cars.length) {
-//         cars = []
+// function _createNotes() {
+//     let notes = utilService.loadFromStorage(NOTE_KEY)
+//     if (!notes || !notes.length) {
+//         notes = []
 //         const vendors = ['audu', 'fiak', 'subali', 'mitsu']
 //         for (let i = 0; i < 6; i++) {
 //             const vendor = vendors[utilService.getRandomIntInclusive(0, vendors.length - 1)]
-//             cars.push(_createCar(vendor, utilService.getRandomIntInclusive(80, 300)))
+//             notes.push(_createNote(vendor, utilService.getRandomIntInclusive(80, 300)))
 //         }
-//         utilService.saveToStorage(CAR_KEY, cars)
+//         utilService.saveToStorage(NOTE_KEY, notes)
 //     }
 // }
 
-function _createCar(vendor, maxSpeed = 250) {
-    const car = getEmptyCar(vendor, maxSpeed)
-    car.id = utilService.makeId()
-    return car
+function _createNote(vendor, maxSpeed = 250) {
+    const note = getEmptyNote(vendor, maxSpeed)
+    note.id = utilService.makeId()
+    return note
 }
 
-function _setNextPrevCarId(car) {
-    return storageService.query(KEEP_KEY).then((cars) => {
-        const carIdx = cars.findIndex((currCar) => currCar.id === car.id)
-        const nextCar = cars[carIdx + 1] ? cars[carIdx + 1] : cars[0]
-        const prevCar = cars[carIdx - 1] ? cars[carIdx - 1] : cars[cars.length - 1]
-        car.nextCarId = nextCar.id
-        car.prevCarId = prevCar.id
-        return car
+function _setNextPrevNoteId(note) {
+    return storageService.query(KEEP_KEY).then((notes) => {
+        const noteIdx = notes.findIndex((currNote) => currNote.id === note.id)
+        const nextNote = notes[noteIdx + 1] ? notes[noteIdx + 1] : notes[0]
+        const prevNote = notes[noteIdx - 1] ? notes[noteIdx - 1] : notes[notes.length - 1]
+        note.nextNoteId = nextNote.id
+        note.prevNoteId = prevNote.id
+        return note
     })
 }
 
-function _getCarCountBySpeedMap(cars) {
-    const carCountBySpeedMap = cars.reduce((map, car) => {
-        if (car.maxSpeed < 120) map.slow++
-        else if (car.maxSpeed < 200) map.normal++
+function _getNoteCountBySpeedMap(notes) {
+    const noteCountBySpeedMap = notes.reduce((map, note) => {
+        if (note.maxSpeed < 120) map.slow++
+        else if (note.maxSpeed < 200) map.normal++
         else map.fast++
         return map
     }, { slow: 0, normal: 0, fast: 0 })
-    return carCountBySpeedMap
+    return noteCountBySpeedMap
 }
 
-function _getCarCountByVendorMap(cars) {
-    const carCountByVendorMap = cars.reduce((map, car) => {
-        if (!map[car.vendor]) map[car.vendor] = 0
-        map[car.vendor]++
+function _getNoteCountByVendorMap(notes) {
+    const noteCountByVendorMap = notes.reduce((map, note) => {
+        if (!map[note.vendor]) map[note.vendor] = 0
+        map[note.vendor]++
         return map
     }, {})
-    return carCountByVendorMap
+    return noteCountByVendorMap
 }
 function save(note) {
     if (note.id) {

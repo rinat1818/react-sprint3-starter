@@ -5,7 +5,7 @@ const { useEffect, useState } = React
 import { keepsServis } from "../../../services/keep.js"
 import { storageService } from "../../../services/async-storage.service.js";
 
-export function NoteEdit() {
+export function NoteEdit({ onSaveNote }) {
 
     const [note, setNote] = useState(keepsServis.getEmptyNote())
     // console.log(note);
@@ -54,12 +54,7 @@ export function NoteEdit() {
     }
 
 
-    function onSaveNote(ev) {
-        ev.preventDefault()
 
-        keepsServis.save(note)
-            .then(() => console.log('saved'))
-    }
     // console.log('saved')
     // function changeColor(color) {
     //         const updatedNote = {
@@ -83,13 +78,20 @@ export function NoteEdit() {
         }))
     }
 
+    function saveNote(ev) {
+        ev.preventDefault()
+        onSaveNote(note)
+            .then(setNote(keepsServis.getEmptyNote()))
+
+    }
+
     return (
         <div className='input-edit'>
             {/* <Link to="/note">
             <button >←</button>
           
             </Link> */}
-            <form onSubmit={onSaveNote}
+            <form onSubmit={saveNote}
 
             >
                 {/* <label htmlFor="txt">Note:</label> */}

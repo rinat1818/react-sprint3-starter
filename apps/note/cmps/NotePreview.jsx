@@ -10,7 +10,7 @@ import { NoteEdit } from "./NoteEditing.jsx";
 export function NotePreview({ notes,onRemoveNotes }) {
   return (
     <section className="note-list">
-      <NoteEdit/>
+      {/* <NoteEdit/> */}
       <ul className="note">
         {notes.map(note => (
           <li key={note.id}

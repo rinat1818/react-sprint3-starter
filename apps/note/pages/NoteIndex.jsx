@@ -6,20 +6,28 @@ import { keepsServis } from "../../../services/keep.js";
 // import { NotePreview } from "../cmps/NoteTxt.jsx";
 import { NotePreview } from "../cmps/NotePreview.jsx";
 import { NoteDetails } from "../../../pages/NoteDetails.jsx";
-
+import { NoteHeader } from "../../../cmps/NoteHeader.jsx";
+import { NoteEdit } from "../cmps/NoteEditing.jsx";
 export function NoteIndex() {
 
     const [notes, setNotes] = useState(null)
-// const [filterBy, setFilterBy] = useState(keepsServis.getDefaultFilter())
+    const [filterBy, setFilterBy] = useState(keepsServis.getDefaultFilter())
     useEffect(() => {
         loadNotes()
 
-    }, [])
+    }, [filterBy])
 
     function loadNotes() {
 
-        return keepsServis.query()
+        return keepsServis.query(filterBy)
             .then(setNotes)
+    }
+    function onSaveNote(note) {
+
+        return keepsServis.save(note)
+            .then((savedNote) => {
+                setNotes(prevNotes => ([...prevNotes, savedNote]))
+            })
     }
 
     function removeNotes(notekId) {
@@ -33,6 +41,13 @@ export function NoteIndex() {
 
     return <div className="book-indx">
         {/* <NoteDetails /> */}
+
+        < NoteHeader
+            filterBy={filterBy}
+
+            setFilterBy={setFilterBy} />
+        <NoteEdit
+            onSaveNote={onSaveNote} />
         <NotePreview
             notes={notes}
             onRemoveNotes={removeNotes}

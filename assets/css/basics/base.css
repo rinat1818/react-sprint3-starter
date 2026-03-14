@@ -29,14 +29,13 @@ img {
     gap: 1em;
     list-style: none;
     padding: 5px;
+    grid-template-columns:
+     repeat(auto-fit,240px);
     /* background-color: aliceblue; */
 
 }
 
-.note-list li {
-    background-color: aqua;
-    border: 2px solid rgb(17, 30, 170);
-}
+
 .title{
     margin-top: 11px;
     margin-bottom: 11px;
@@ -123,9 +122,14 @@ img {
     gap: 10px;
          */
     }
+    /* .note-list li {
+    background-color: aqua;
+    border: 2px solid rgb(17, 30, 170);
+} */
     .note-list li{
         border-radius: 8px;
         border: 1px solid gainsboro;
+        padding: 12px 16px;
     }
     .note-list {
         
