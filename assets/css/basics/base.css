@@ -131,8 +131,15 @@ img {
         border: 1px solid gainsboro;
         padding: 12px 16px;
     }
-    .note-list {
+    /* .note-list {
         
+    } */
+     .note-btn {
+        background-color: aqua;
+     }
+
+    .first-notes{
+        background-color: blueviolet;
     }
     /* .note-list{
         border-radius: 8px;

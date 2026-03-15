@@ -53,6 +53,21 @@ export function NoteEdit({ onSaveNote }) {
         elH1.classList.add('none')
     }
 
+function firstNotes() {
+   console.log('kkkk');
+   
+     
+    }
+
+// function saveNote(ev) {
+//     ev.preventDefault()
+//     onSaveNote(note).then(savedNote => {
+//         setFirstNote(savedNote)
+//         setNote(keepsServis.getEmptyNote())
+//         hideGallery()
+//     })
+// }
+
 
 
     // console.log('saved')
@@ -98,8 +113,16 @@ export function NoteEdit({ onSaveNote }) {
                 <div className="note-container"
                     style={{ backgroundColor: note.style.backgroundColor }}>
 
-                    <div className='input-title none' >{<h1>title</h1>}</div>
+                    <div className='input-title none' >{<h1>title</h1>}
+                      {/* <button type="submit">Save</button> */}
+                    {/* <button onClick={firstNotes}>ddd</button> */}
 
+
+                    <button type="button" onClick={firstNotes}>ddd</button>
+
+
+                    </div>
+{/* <button>hhh</button> */}
                     {/* {hideGallery()} */}
                     <input
                         className="note-input"
@@ -115,6 +138,9 @@ export function NoteEdit({ onSaveNote }) {
 
                     <div className="note-extra none">
                         {/* {var nite = d} */}
+                       
+                       {/* <button type="submit">Save</button> */}
+                       
                         <button onClick={hideGallery}>Save</button>
                         {/* <button >🎨</button> */}
                         <button type="button" onClick={() => setShowColors(prev => !prev)}>

@@ -7,28 +7,43 @@ import { NoteTxt } from "./NoteTxt.jsx";
 import { NoteEdit } from "./NoteEditing.jsx";
 
 
-export function NotePreview({ notes,onRemoveNotes }) {
+export function NotePreview({ notes, onRemoveNotes }) {
   return (
-    <section className="note-list">
+    <section
+      className="note-list">
+      <div className="first-notes">
+        <h1>bbbb</h1>
+        {/* {firstNote && firstNote.info.txt} */}
+      </div>
       {/* <NoteEdit/> */}
       <ul className="note">
         {notes.map(note => (
           <li key={note.id}
+          
             style={{ backgroundColor: note.style.backgroundColor }}>
-           
+
             <Link to={`/note/${note.id}`}>
               {note.type === 'NoteTxt' && <NoteTxt note={note} />}
               {note.type === 'NoteImg' && <NoteImg note={note} />}
             </Link>
+
+
             <button
-           
+
               onClick={() => onRemoveNotes(note.id)}
               className="btn-remove">x</button>
+            <div className="note-btn">
+              hh
+              
+              <button>ff</button>
+              <button>ff</button>
+              <button>ff</button>
+            </div>
           </li>
         ))}
       </ul>
 
-{/* <Link to="/note/edit">
+      {/* <Link to="/note/edit">
   <button className="add-button">+</button>
 </Link> */}
     </section>

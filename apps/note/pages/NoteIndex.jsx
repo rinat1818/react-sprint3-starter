@@ -12,6 +12,9 @@ export function NoteIndex() {
 
     const [notes, setNotes] = useState(null)
     const [filterBy, setFilterBy] = useState(keepsServis.getDefaultFilter())
+
+    
+
     useEffect(() => {
         loadNotes()
 
@@ -27,6 +30,8 @@ export function NoteIndex() {
         return keepsServis.save(note)
             .then((savedNote) => {
                 setNotes(prevNotes => ([...prevNotes, savedNote]))
+
+                //   return savedNote
             })
     }
 
@@ -47,10 +52,16 @@ export function NoteIndex() {
 
             setFilterBy={setFilterBy} />
         <NoteEdit
-            onSaveNote={onSaveNote} />
+            onSaveNote={onSaveNote} 
+
+/>
+
         <NotePreview
             notes={notes}
             onRemoveNotes={removeNotes}
+
+
+          
         />
 
 
