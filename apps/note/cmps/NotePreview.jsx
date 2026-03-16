@@ -1,80 +1,116 @@
 const { Link } = ReactRouterDOM
+const { useEffect, useState } = React
 
 import { NoteImg } from "./NoteImg.jsx";
 // import { NotePreview } from "./NoteTxt.jsx"
 import { NoteTxt } from "./NoteTxt.jsx";
+import { keepsServis } from "../../../services/keep.js";
 
 import { NoteEdit } from "./NoteEditing.jsx";
+import { ColorPicker } from "./ColorPicker.jsx";
 
 
-export function NotePreview({ notes, onRemoveNotes }) {
-  return (
-    <section
-      className="note-list">
-      <div className="first-notes">
-        <h1>bbbb</h1>
-        {/* {firstNote && firstNote.info.txt} */}
-      </div>
-      {/* <NoteEdit/> */}
-      <ul className="note">
-        {notes.map(note => (
-          <li key={note.id}
-          
-            style={{ backgroundColor: note.style.backgroundColor }}>
+export function NotePreview({ notes, onRemoveNotes, onUpdateNoteColor, pinnedNotes, onPinNote }) {
+  //  const [not, setNote] = useState(keepsServis.getEmptyNote())
+  // const [showColors, setShowColors] = useState(nul
 
-            <Link to={`/note/${note.id}`}>
-              {note.type === 'NoteTxt' && <NoteTxt note={note} />}
-              {note.type === 'NoteImg' && <NoteImg note={note} />}
-            </Link>
+  const [openColorId, setOpenColorId] = useState(null)
+  // const [pinnedNote, setPinnedNote] = useState([])  
+  // const [pinnedNotes, setPinnedNotes] = useState([])
+  {
+    return (
 
+      <section
+        className="note-list">
+        <div className="first-notes">
+          {pinnedNotes.map(note => (
+            <li key={note.id}
+              style={{ backgroundColor: note.style.backgroundColor }}
+              className="hte-note">
+              <Link to={`/note/${note.id}`}>
+                {note.type === 'NoteTxt' && <NoteTxt note={note} />}
+                {note.type === 'NoteImg' && <NoteImg note={note} />}
+              </Link>
+              <button onClick={() => onRemoveNotes(note.id)} className="btn-remove">x</button>
+{/*               
+              <button type="button" onClick={() => onPinNote(note.id)}>📌</button>
+            </li>
+          ))}
 
-            <button
-
-              onClick={() => onRemoveNotes(note.id)}
-              className="btn-remove">x</button>
+        </div> */}
+        <button type="button" onClick={() => onPinNote(note.id)}>📌</button>
             <div className="note-btn">
-              hh
-              
-              <button>ff</button>
-              <button>ff</button>
-              <button>ff</button>
+                hh
+                <button type="button" onClick={() =>
+                    setOpenColorId(prev => prev === note.id ? null : note.id)
+                }>🎨</button>
+                <button>ff</button>
+                <button>ff</button>
+                <button>ff</button>
+                {openColorId === note.id && (
+                    <ColorPicker onColorChange={(color) => {
+                        onUpdateNoteColor(note.id, color)
+                        setOpenColorId(null)
+                    }} />
+                )}
             </div>
-          </li>
-        ))}
-      </ul>
+        </li>
+    ))}
+</div>
 
-      {/* <Link to="/note/edit">
+        <ul className="note">
+          {/* {notes.map(note => ( */}
+
+          {notes.filter(note => !pinnedNotes.find(p => p.id === note.id)).map(note => (
+            <li key={note.id}
+              style={{ backgroundColor: note.style.backgroundColor }}
+              className="hte-note"
+            >
+
+              <Link to={`/note/${note.id}`}>
+                {note.type === 'NoteTxt' && <NoteTxt note={note} />}
+                {note.type === 'NoteImg' && <NoteImg note={note} />}
+              </Link>
+
+
+              <button
+
+                onClick={() => onRemoveNotes(note.id)}
+                className="btn-remove">x</button>
+
+              <button type="button" onClick={() => onPinNote(note.id)}>📌</button>
+              {/* <button type="button" onClick={() => onPinNote(note.id)}>📌</button> */}
+              <div className="note-btn">
+                hh
+
+                <button type="button" onClick={() =>
+                  setOpenColorId(prev => prev === note.id ? null : note.id)
+                }>🎨</button>
+
+                <button>ff</button>
+                <button>ff</button>
+
+                <button>ff</button>
+                {openColorId === note.id && (
+                  <ColorPicker onColorChange={(color) => {
+                    onUpdateNoteColor(note.id, color)
+                    setOpenColorId(null) // סוגר אחרי בחירה
+                  }} />
+                )}
+              </div>
+
+
+
+            </li>
+          ))}
+        </ul>
+        {/* <Link to="/note/edit">
   <button className="add-button">+</button>
-</Link> */}
-    </section>
-  )
+  </Link> */}
+      </section>
+    )
+  }
+
+
 }
 
-
-
-// export function NotePreview({ notes }) {
-//     console.log(notes);
-
-//     return <section className="note-list">
-
-//         <ul className="fluid-grid">
-//             {notes.map(note => (
-//                 <li key={note.id}>
-
-//                     <Link to={`/note/${note.id}`}>
-//                         <NoteTxt note={note} />
-//                     </Link>
-//                     {note.type === 'NoteImg' && <NoteImg note={note} />}
-//                     <Link to={`/note/${note.id}`}>
-//                         <NoteImg note={note} />
-//                     </Link>
-
-
-
-//                 </li>
-//             ))}
-
-//         </ul >
-//         <button className="add-button">+</button>
-//     </section >
-// }

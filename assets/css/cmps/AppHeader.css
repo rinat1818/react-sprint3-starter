@@ -1,10 +1,15 @@
 .app-header {
+
+    position: sticky;
+    top: 0;
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     padding: 1em;
     background: var(--bg1);
     background-color: black;
     color: antiquewhite;
+      
 }
 
 nav a {

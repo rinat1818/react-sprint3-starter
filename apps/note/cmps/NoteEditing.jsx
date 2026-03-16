@@ -2,32 +2,30 @@ const { Link } = ReactRouterDOM
 
 const { useEffect, useState } = React
 
+import { ColorPicker } from "./ColorPicker.jsx";
 import { keepsServis } from "../../../services/keep.js"
 import { storageService } from "../../../services/async-storage.service.js";
 
 export function NoteEdit({ onSaveNote }) {
 
     const [note, setNote] = useState(keepsServis.getEmptyNote())
-    // console.log(note);
-
     const [showColors, setShowColors] = useState(false)
-    const colors = [
-        '#ffffff',
-        '#faafa8',
-        '#f39f76',
-        '#fff8b8',
-        '#e2f6d3',
-        '#b4ddd3',
-        '#d4e4ed',
-        '#aeccdc',
-        '#d3bfdb',
-        '#f6e2dd',
-        '#e9e3d4',
-        '#efeff1',
+ 
 
-    ]
+    
 
-
+    function changeColor(color) {
+        setNote(prev => ({
+            ...prev,
+            style: {
+                ...prev.style,
+                backgroundColor: color
+            }
+            
+        }))
+        // console.log(color);
+        setShowColors(false)
+    }
 
     function handleChange({ target }) {
         const value = target.value
@@ -53,77 +51,34 @@ export function NoteEdit({ onSaveNote }) {
         elH1.classList.add('none')
     }
 
-function firstNotes() {
-   console.log('kkkk');
-   
-     
+    function firstNotes() {
+        console.log('kkkk');
+
+
     }
-
-// function saveNote(ev) {
-//     ev.preventDefault()
-//     onSaveNote(note).then(savedNote => {
-//         setFirstNote(savedNote)
-//         setNote(keepsServis.getEmptyNote())
-//         hideGallery()
-//     })
-// }
-
-
-
-    // console.log('saved')
-    // function changeColor(color) {
-    //         const updatedNote = {
-    //             ...note,
-    //             style: {
-    //                 ...note.style,
-    //                 backgroundColor: color
-    //             }
-    //         }
-
-    //         setNote(updatedNote)
-    //         keepsServis.save(updatedNote)
-    //     }
-    function changeColor(color) {
-        setNote(prev => ({
-            ...prev,
-            style: {
-                ...prev.style,
-                backgroundColor: color
-            }
-        }))
-    }
-
     function saveNote(ev) {
         ev.preventDefault()
         onSaveNote(note)
-            .then(setNote(keepsServis.getEmptyNote()))
+            .then(() => setNote(keepsServis.getEmptyNote()))
+        // .then(setNote(keepsServis.getEmptyNote()))
 
     }
 
     return (
-        <div className='input-edit'>
-            {/* <Link to="/note">
-            <button >←</button>
-          
-            </Link> */}
-            <form onSubmit={saveNote}
+        <div className='input-edit'
+       
+        >
+            <form onSubmit={saveNote}>
 
-            >
-                {/* <label htmlFor="txt">Note:</label> */}
                 <div className="note-container"
                     style={{ backgroundColor: note.style.backgroundColor }}>
 
-                    <div className='input-title none' >{<h1>title</h1>}
-                      {/* <button type="submit">Save</button> */}
-                    {/* <button onClick={firstNotes}>ddd</button> */}
-
-
-                    <button type="button" onClick={firstNotes}>ddd</button>
+                    <div className='input-title none' >
+                        {<h1>title</h1>}
+                        <button   style={{ backgroundColor: note.style.backgroundColor }} type="button" onClick={firstNotes}>ddd</button>
 
 
                     </div>
-{/* <button>hhh</button> */}
-                    {/* {hideGallery()} */}
                     <input
                         className="note-input"
                         type="text"
@@ -136,49 +91,25 @@ function firstNotes() {
 
                     />
 
-                    <div className="note-extra none">
-                        {/* {var nite = d} */}
-                       
-                       {/* <button type="submit">Save</button> */}
-                       
-                        <button onClick={hideGallery}>Save</button>
-                        {/* <button >🎨</button> */}
-                        <button type="button" onClick={() => setShowColors(prev => !prev)}>
-                            🎨
-                        </button>
+                    <div className="note-extra none"
+                     >
+                        <button   style={{ backgroundColor: note.style.backgroundColor }} onClick={hideGallery}>Save</button>
+
+                        <button
+                            type="button"
+                            onClick={() => setShowColors(prev => !prev)}
+                            style={{ backgroundColor: note.style.backgroundColor }}
+                        >🎨</button>
                         <button></button>
-
                     </div>
+
+                    {showColors && (
+                        <ColorPicker onColorChange={changeColor} />
+                    )}
+                  
                 </div>
+               
 
-
-
-                {showColors && (
-                    <div className="color-picker">
-                        {colors.map(color => (
-                            <button
-                                type="button"
-                                className="Color-changer-button"
-                                key={color}
-                                style={{ backgroundColor: color }}
-                                onClick={() => changeColor(color)}
-                            ></button>
-                        ))}
-                    </div>
-                )}
-                {/* {colors.map(color => (
-                    <button
-                        type="button"
-                        className="Color-changer-button"
-                        key={color}
-                        style={{ backgroundColor: color }}
-                        // onClick={() => changeColor(color)}
-                    ></button>
-                ))} */}
-                {/* { <Link to="/note">
-            <button >←</button>
-          
-            </Link>} */}
             </form>
         </div>
     )

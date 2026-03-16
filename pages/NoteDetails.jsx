@@ -1,20 +1,15 @@
 const { Link } = ReactRouterDOM
 
 import { keepsServis } from "../services/keep.js";
+import { ColorPicker } from "../apps/note/cmps/ColorPicker.jsx";
 
 const { useParams } = ReactRouterDOM
 const { useState, useEffect } = React
 
 
-const colors = [
-    'rgb(200,140,19)',
-    'rgb(34,183,32)',
-    '#ff6b6b',
-    '#6b6bff'
-]
-
 export function NoteDetails() {
     const [note, setNote] = useState(null)
+     const [showColors, setShowColors] = useState(false)
     const params = useParams()
 
     useEffect(() => {
@@ -50,7 +45,7 @@ export function NoteDetails() {
     if (!note) return <div>loading...</div>
 
     return (
-        <article className='book-list'
+        <article className='single-note'
             style={{ backgroundColor: note.style.backgroundColor }}>
 
             <Link to="/note">
@@ -66,18 +61,39 @@ export function NoteDetails() {
                     />
                 )
             }
+                <button type="button" onClick={() => setShowColors(prev => !prev)}>
+                🎨
+            </button>
+            {showColors && <ColorPicker onColorChange={changeColor} />}
+
+            <button className="menu-btn">⋮</button>
+       
+    
             {/* {<h1>eeee</h1>} */}
 
-            {colors.map(color => (
+            {/* <button
+    type="button"
+    onClick={() => setShowColors(prev => !prev)}
+>
+    🎨
+</button> */}
+
+{/* <ColorPicker
+    colors={colors}
+    showColors={showColors}
+    onChangeColor={changeColor}
+/> */}
+
+            {/* {colors.map(color => (
                 <button
                     className="Color-changer-button"
                     key={color}
                     style={{ backgroundColor: color }}
                     onClick={() => changeColor(color)}
                 ></button>
-            ))}
+            ))} */}
 
-            <button className="menu-btn">⋮</button>
+            {/* <button className="menu-btn">⋮</button> */}
 
         </article>
     )
