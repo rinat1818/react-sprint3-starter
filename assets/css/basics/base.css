@@ -80,7 +80,7 @@ img {
 
 .note-input {
     border: none;
-   
+   background-color: aqua;
     margin: 0 auto;
     text-align: center;
 
@@ -88,8 +88,29 @@ img {
     font-size: 18px;
     outline: none;
 }
+.note-input {
+    border: none;
+    background-color: aqua;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    outline: none;
+    width: 317.4px;
+    height: 24px;
+    border: 1px solid gray;
+    
+}
+@media (max-width: 458.4px) {
+    .note-input {
+        width: 80%;
+        height: 24px;
+    }
+}
+
 .input-edit {
     margin-top: 15px;
+    /* background-color: blueviolet; */
 }
 .Color-changer-button {
     padding: 10px;
@@ -114,13 +135,13 @@ img {
     text-align: center;
     border-radius: 8px;
     width: 412px;
-    border: 1px solid gray;
-   
+    /* border: 1px solid rgb(121, 120, 120); */
     text-align: center;
     cursor: text;
     min-height: 26px;
     overflow-wrap: break-word;
     padding: 12px 16px 12px 16px;
+    background-color: rgb(40, 180, 164);
 }
 .none {
     display: none;
@@ -152,6 +173,7 @@ nav a {
 
 .note-container {
     position: relative;
+    /* background-color: blue; */
 }
 .logo-img {
     width: 50px;
