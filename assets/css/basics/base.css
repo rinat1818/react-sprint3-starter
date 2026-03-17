@@ -115,9 +115,9 @@ img {
     border: 1px solid gray;
     
 }
-@media (min-width: 398.4px) {
+@media (max-width: 398.4px) {
     .note-input {
-        width: 317px;
+        width: 117px;
         height: 24px;
     }
 }
