@@ -100,7 +100,7 @@ function _createKeeps() {
     id: 'n101', 
     createdAt: 1112222, 
     type: 'NoteTxt', 
-    isPinned: true, 
+    isPinned: false, 
     style: { 
       backgroundColor: '#f39f76' 
     }, 
@@ -125,7 +125,7 @@ function _createKeeps() {
     id: 'n103', 
     createdAt: 1112222, 
     type: 'NoteTxt', 
-    isPinned: true, 
+    isPinned: false, 
     style: { 
       backgroundColor: '#fff8b8' 
     }, 
@@ -137,7 +137,7 @@ function _createKeeps() {
     id: 'n105', 
     createdAt: 1112222, 
     type: 'NoteTxt', 
-    isPinned: true, 
+    isPinned: false, 
     style: { 
       backgroundColor: '#f39f76' 
     }, 
@@ -149,7 +149,7 @@ function _createKeeps() {
     id: 'n106', 
     createdAt: 1112222, 
     type: 'NoteTxt', 
-    isPinned: true, 
+    isPinned: false, 
     style: { 
       backgroundColor: '#fff8b8' 
     }, 

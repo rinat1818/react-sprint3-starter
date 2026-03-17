@@ -1,5 +1,7 @@
 body {
     margin: 0;
+    font-size: 15px;
+    font-family: "Roboto", arial, sans-serif;
     /* text-align: center; */
 }
 
@@ -25,7 +27,6 @@ img {
 
 .note-list ul {
     display: grid;
-
     gap: 1em;
     list-style: none;
     padding: 5px;
@@ -33,6 +34,11 @@ img {
         repeat(auto-fit, 240px);
     /* background-color: aliceblue; */
 
+
+}
+
+.first-notes {
+    list-style: none;
 }
 
 
@@ -48,7 +54,7 @@ img {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    /* או left */
+
     padding: 7px;
     font-size: 40px;
     border-radius: 50px;
@@ -60,7 +66,7 @@ img {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    /* או left */
+    
     padding: 10px;
 
     font-size: 45px;
@@ -69,108 +75,56 @@ img {
 }
 
 .note-img {
-    /* height: 100px; */
     width: 100px;
 }
 
 .note-input {
     border: none;
-    outline: none;
-    background: none;
-    font-size: 18px;
-}
-
-.note-input {
-    border: none;
-    outline: none;
-    background: none;
-    font-size: 18px;
-}
-
-.input-edit {
-    margin-top: 15px;
-
-    /* background-color: aqua; */
-
-}
-
-.note-input {
-           
-
+   
     margin: 0 auto;
     text-align: center;
-    /* border: 3px solid rgb(200, 19, 19); */
-    /* width: 100%; */
+
     padding: 10px;
     font-size: 18px;
-    /* border: none; */
     outline: none;
-    /* border: 3px solid palevioletred; */
-
-
 }
-
-
+.input-edit {
+    margin-top: 15px;
+}
 .Color-changer-button {
-    /* background-color: rgb(200, 140, 19); */
     padding: 10px;
     border-radius: 50%;
 }
-
 .note {
-    /* border: 5px solid #7b1919; */
     display: grid;
     grid-template-columns: repeat(3, 110px);
     grid-template-rows: repeat(3, auto);
-
 }
-
 .note-list li {
     border-radius: 8px;
     border: 1px solid gainsboro;
     padding: 12px 16px;
-    
 }
 
-/* .note-list {
-            
-        } */
 .note-btn {
     background-color: aqua;
 }
-
-.first-notes {
-    /* background-color: blueviolet; */
-}
-
 .note-container {
     margin: auto;
     text-align: center;
     border-radius: 8px;
     width: 412px;
-    /* height:30px ; */
-border: 1px solid gray;
-    /* border: 3px solid rgb(200, 19, 19); */
+    border: 1px solid gray;
+   
     text-align: center;
     cursor: text;
     min-height: 26px;
     overflow-wrap: break-word;
     padding: 12px 16px 12px 16px;
-
-
 }
-
-.note-extra {
-    /* display: none; */
-}
-
 .none {
     display: none;
-     /* display: flex; */
-   
 }
-
-
 nav a {
     margin: .5em;
 }
@@ -179,17 +133,11 @@ nav a {
     flex-wrap: wrap;
     justify-content: center;
 }
-
 .color-picker {
-     
-
-    position: absolute;
-    top: 100%;
-    /* מתחת לאלמנט האב */
-    left: 0;
+    position: fixed;
     z-index: 10;
     border-radius: 50px;
-    background-color: rgb(255, 255, 255);
+    background-color: white;
     border: 1px solid gainsboro;
 }
 
@@ -199,66 +147,42 @@ nav a {
 
 .single-note {
     position: relative;
-    /* border-radius: 50px;
-            background-color: rgb(255, 255, 255);
-            border: 1px solid gainsboro; */
+
 }
 
 .note-container {
     position: relative;
 }
-.logo-img{
-    /* margin: auto; */
+.logo-img {
     width: 50px;
     height: 40px;
     border: none;
     margin-left: 25px;
-    /* margin-bottom: 40px; */
+
 }
+
 .app-note-header {
     position: sticky;
     top: 0;
     z-index: 20;
-       margin-top: -60px; 
     display: flex;
     justify-content: space-between;
-     align-items: center; 
+    align-items: center;
 
     color: rgb(118, 73, 13);
     height: 24px;
     padding: 16px;
 
     background-color: rgb(255, 255, 255);
-}
+    margin-top: -57px;
 
+}
 .first-notes {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
 }
-
-.first-notes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;  /* ✅ באמצע */
-    gap: 10px;
-}
-/* .first-notes li {
-    width: 110px; 
-    border-radius: 8px;
-    border: 1px solid gainsboro;
-    padding: 12px 16px;
-    position: relative;
-} */
- /* .first-notes li {
-    border-radius: 8px;
-    border: 1px solid gainsboro;
-    padding: 12px 16px;
-    width: 206.4px;
-    min-height: 74.4px;
-    position: relative;
-    box-sizing: border-box;
-} */
 .first-notes li {
     border-radius: 8px;
     border: 1px solid gainsboro;
@@ -268,6 +192,7 @@ nav a {
     position: relative;
     box-sizing: content-box;
 }
+
 .note-overlay {
     position: fixed;
     inset: 0;
@@ -283,4 +208,27 @@ nav a {
     max-height: 80vh;
     overflow-y: auto;
     border-radius: 8px;
+}
+
+.note-list {
+    margin-left: 15px;
+    margin-right: 15px;
+    columns: auto 220px;
+}
+
+.note-list li {
+    break-inside: avoid;
+    
+}
+.note-list li:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.first-notes {
+    display: block;
+
+    column-span: all;
+    columns: auto 240px;
+}
+.text {
+    font-weight: 400;
 }
