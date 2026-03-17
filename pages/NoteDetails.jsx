@@ -1,21 +1,25 @@
-const { Link } = ReactRouterDOM
+// const { Link } = ReactRouterDOM
+
+
+// const { useParams } = ReactRouterDOM
+const { useState, useEffect } = React
 
 import { keepsServis } from "../services/keep.js";
 import { ColorPicker } from "../apps/note/cmps/ColorPicker.jsx";
 
-const { useParams } = ReactRouterDOM
-const { useState, useEffect } = React
-
-
-export function NoteDetails() {
+// export function NoteDetails() {
+export function NoteDetails({ noteId, onClose }) {
     const [note, setNote] = useState(null)
      const [showColors, setShowColors] = useState(false)
-    const params = useParams()
+    // const params = useParams()
 
     useEffect(() => {
-        if(!params.id )return
-        keepsServis.get(params.id).then(setNote)
-    }, [params.id])
+        // if(!params.id )return
+        if(!noteId) return
+        // keepsServis.get(params.id).then(setNote)
+         keepsServis.get(noteId).then(setNote)
+         }, [noteId])
+    // }, [params.id])
 
     function handleChange1({ target }) {
         const value = target.value
@@ -48,9 +52,10 @@ export function NoteDetails() {
         <article className='single-note'
             style={{ backgroundColor: note.style.backgroundColor }}>
 
-            <Link to="/note">
+            {/* <Link to="/note">
                 <button >←</button>
-            </Link>
+            </Link> */}
+            <button onClick={onClose}>←</button>
 
             <h1 className='title'>title</h1>
             {note.type === 'NoteTxt' && (

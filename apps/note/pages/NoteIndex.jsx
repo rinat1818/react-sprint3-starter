@@ -13,50 +13,57 @@ export function NoteIndex() {
     const [filterBy, setFilterBy] = useState(keepsServis.getDefaultFilter())
     const [pinnedNotes, setPinnedNotes] = useState([])
 
-    function onUpdateNoteColor(noteId, color) {
-    //     const updatedNotes = notes.map(note =>
-    //         note.id === noteId
-    //             ? { ...note, style: { ...note.style, backgroundColor: color } }
-    //             : note
-    //     )
-    //     setNotes(updatedNotes)
-    //     const noteToSave = updatedNotes.find(note => note.id === noteId)
-    //     keepsServis.save(noteToSave)
 
-    // }
+    const [selectedNoteId, setSelectedNoteId] = useState(null)
 
- const updatedNotes = notes.map(note =>
-        note.id === noteId
-            ? { ...note, style: { ...note.style, backgroundColor: color } }
-            : note
-    )
-    setNotes(updatedNotes)
-    
-    // ✅ תוסיפי את זה:
-    setPinnedNotes(prev => prev.map(note =>
-        note.id === noteId
-            ? { ...note, style: { ...note.style, backgroundColor: color } }
-            : note
-    ))
-    
-    const noteToSave = updatedNotes.find(note => note.id === noteId)
-    keepsServis.save(noteToSave)
-}
+    function onUpdateNoteColor(note, color) {
+        //     const updatedNotes = notes.map(note =>
+        //         note.id === noteId
+        //             ? { ...note, style: { ...note.style, backgroundColor: color } }
+        //             : note
+        //     )
+        //     setNotes(updatedNotes)
+        //     const noteToSave = updatedNotes.find(note => note.id === noteId)
+        //     keepsServis.save(noteToSave)
+
+        // }
+
+        // const updatedNotes = notes.map(note =>
+        //     note.id === noteId
+        //         ? { ...note, style: { ...note.style, backgroundColor: color } }
+        //         : note
+        // )
+        // setNotes(updatedNotes)
+
+        // // ✅ תוסיפי את זה:
+        // setPinnedNotes(prev => prev.map(note =>
+        //     note.id === noteId
+        //         ? { ...note, style: { ...note.style, backgroundColor: color } }
+        //         : note
+        // ))
+
+        // const noteToSave = updatedNotes.find(note => note.id === noteId)
+        // keepsServis.save(noteToSave)
+
+        note.style.backgroundColor = color
+        keepsServis.save(note)
+            .then(savedNote => {
+                if(savedNote.isPinned) setPinnedNotes(prevNotes => prevNotes.map(n => n.id === note.id ? note : n))
+                else setNotes(prevNotes => prevNotes.map(n => n.id === note.id ? note : n))
+            })
+    }
 
 
     useEffect(() => {
         loadNotes()
-
     }, [filterBy])
 
-    useEffect(() => {
-    const saved = localStorage.getItem('pinnedNotes')
-    if (saved) setPinnedNotes(JSON.parse(saved))
-}, [])
     function loadNotes() {
-
         return keepsServis.query(filterBy)
-            .then(setNotes)
+            .then(notes => {
+                setNotes(notes.filter(note => !note.isPinned))
+                setPinnedNotes(notes.filter(note => note.isPinned))
+            })
     }
     function onSaveNote(note) {
 
@@ -72,17 +79,24 @@ export function NoteIndex() {
         return keepsServis.remove(notekId)
             .then(() => setNotes(prev => prev.filter(note => note.id !== notekId)))
     }
-    
-    function onPinNote(noteId) {
-        setPinnedNotes(prev => {
-            const already = prev.find(n => n.id === noteId)
-            if (already) return prev.filter(n => n.id !== noteId)  // הסר אם כבר נעוץ
-            const note = notes.find(n => n.id === noteId)
-            return [...prev, note]  // הוסף אם לא
-            
-        })
-         const note = notes.find(n => n.id === noteId)
-    keepsServis.save(note)
+
+    function onPinNote(note) {
+        note.isPinned = !note.isPinned
+        keepsServis.save(note)
+            .then(savedNote => {
+                setPinnedNotes(prevNotes => {
+                    const already = prevNotes.find(n => n.id === savedNote.id)
+                    if (already) return prevNotes.filter(n => n.id !== savedNote.id)  // הסר אם כבר נעוץ
+                    return [...prevNotes, savedNote]  // הוסף אם לא
+                })
+
+                setNotes(prevNotes => {
+                    const already = prevNotes.find(n => n.id === savedNote.id)
+                    if (already) return prevNotes.filter(n => n.id !== savedNote.id)  // הסר אם כבר נעוץ
+                    return [...prevNotes, savedNote]  // הוסף אם לא
+                })
+            })
+        // const note = notes.find(n => n.id === noteId)
     }
 
 
@@ -107,7 +121,8 @@ export function NoteIndex() {
             onRemoveNotes={removeNotes}
             onUpdateNoteColor={onUpdateNoteColor}
             onPinNote={onPinNote}
-                pinnedNotes={pinnedNotes}
+            pinnedNotes={pinnedNotes}
+            onSelectNote={setSelectedNoteId}
 
 
         //             onRemoveNotes={removeNotes}
@@ -115,8 +130,22 @@ export function NoteIndex() {
 
 
         />
-
-
+       {selectedNoteId && (
+    <div className="note-overlay" onClick={() => {
+        setSelectedNoteId(null)
+        loadNotes()  // ✅ נוסף
+    }}>
+        <div className="note-modal" onClick={e => e.stopPropagation()}>
+            <NoteDetails
+                noteId={selectedNoteId}
+                onClose={() => {
+                    setSelectedNoteId(null)
+                    loadNotes()  // ✅ נוסף
+                }}
+            />
+        </div>
+    </div>
+)}
     </div>
 
 

@@ -268,3 +268,19 @@ nav a {
     position: relative;
     box-sizing: content-box;
 }
+.note-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.note-modal {
+    width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 8px;
+}
