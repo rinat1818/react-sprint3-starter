@@ -276,3 +276,14 @@ nav a {
 .text {
     font-weight: 400;
 }
+
+@media (max-width: 480px) {
+    .note-list {
+        columns: 1;
+        padding: 10px;
+    }
+    
+    .note-list li {
+        margin-bottom: 12px;
+    }
+}
