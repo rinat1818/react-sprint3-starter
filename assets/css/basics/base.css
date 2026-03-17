@@ -168,6 +168,9 @@ nav a {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 15px;
+     
+
 }
 .color-picker {
     position: fixed;
@@ -249,14 +252,16 @@ nav a {
 }
 
 .note-list {
-    margin:0 auto;
+     margin: 0 auto;
     margin-left: 15px;
     margin-right: 15px;
     columns: auto 220px;
+      gap: 12px;
 }
 
 .note-list li {
     break-inside: avoid;
+     margin-bottom: 12px;
     
 }
 .note-list li:hover {
