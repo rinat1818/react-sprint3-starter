@@ -71,7 +71,7 @@ export function NoteDetails({ noteId, onClose }) {
             </button>
             {showColors && <ColorPicker onColorChange={changeColor} />}
 
-            <button className="menu-btn">⋮</button>
+            {/* <button className="menu-btn">⋮</button> */}
        
     
             {/* {<h1>eeee</h1>} */}
