@@ -8,4 +8,5 @@ export function NoteTxt({note}){
    
   
 </div>
+
 }

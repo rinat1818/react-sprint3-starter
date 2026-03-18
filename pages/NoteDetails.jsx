@@ -44,6 +44,15 @@ export function NoteDetails({ noteId, onClose }) {
         setNote(updatedNote)
         keepsServis.save(updatedNote)
     }
+    function handleChangeTitle({ target }) {
+    const value = target.value
+    const updatedNote = {
+        ...note,
+        info: { ...note.info, title: value }
+    }
+    setNote(updatedNote)
+    keepsServis.save(updatedNote)
+}
     // return <h1>hhh</h1>
 
     if (!note) return <div>loading...</div>
@@ -66,6 +75,17 @@ export function NoteDetails({ noteId, onClose }) {
                     />
                 )
             }
+             {note.type === 'NoteImg' && (
+            <div>
+                <img src={note.info.url} alt={note.info.title} />
+                <input
+                    className='note-input'
+                    type="text"
+                    value={note.info.title || ''}
+                    onChange={handleChangeTitle}  
+                />
+            </div>
+        )}
                 <button type="button" onClick={() => setShowColors(prev => !prev)}>
                 🎨
             </button>
