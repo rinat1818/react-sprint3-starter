@@ -26,7 +26,7 @@ export function NoteHeader({ filterBy, setFilterBy }) {
                     onChange={ev => handleChange(ev)}
                     type="text"
                     name="txt"
-                    placeholder="Vendor"
+                    placeholder=" Search"
                     autoFocus
                 />
                 <button onClick={() => {

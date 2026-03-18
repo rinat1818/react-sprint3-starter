@@ -70,23 +70,24 @@ function getDefaultFilter(filterBy = { txt: '', minSpeed: 0 }) {
 //     info: {
 //       txt,
 //     }
-   
+
 //   }
 // }
 
 function getEmptyNote(txt = '') {
-  return {
-    // id: utilService.makeId(),
-    createdAt: Date.now(),
-    type: 'NoteTxt',
-    isPinned: false,
-    style: {
-      backgroundColor: '#ffffff'
-    },
-    info: {
-      txt
+    return {
+        // id: utilService.makeId(),
+        createdAt: Date.now(),
+        type: 'NoteTxt',
+        isPinned: false,
+        style: {
+            backgroundColor: '#ffffff'
+        },
+        info: {
+            noteTitle: '',
+            txt
+        }
     }
-  }
 }
 
 function _createKeeps() {
@@ -95,97 +96,97 @@ function _createKeeps() {
 
     if (!notes || !notes.length) {
 
-       notes = [ 
-  { 
-    id: 'n101', 
-    createdAt: 1112222, 
-    type: 'NoteTxt', 
-    isPinned: false, 
-    style: { 
-      backgroundColor: '#f39f76' 
-    }, 
-    info: { 
-      txt: 'Fullstack Me Baby!' 
-    } 
-  }, 
-//   { 
-//     id: 'n102', 
-//     createdAt: 1112223, 
-//     type: 'NoteImg', 
-//     isPinned: false, 
-//     style: { 
-//       backgroundColor: '#0d0' 
-//     }, 
-//     info: { 
-//       url: 'img/h.png', 
-//       title: 'Bobi and Me' 
-//     } 
-//   },
-  { 
-    id: 'n103', 
-    createdAt: 1112222, 
-    type: 'NoteTxt', 
-    isPinned: false, 
-    style: { 
-      backgroundColor: '#fff8b8' 
-    }, 
-    info: { 
-      txt: 'by!' 
-    } 
-  }, 
-  { 
-    id: 'n105', 
-    createdAt: 1112222, 
-    type: 'NoteTxt', 
-    isPinned: false, 
-    style: { 
-      backgroundColor: '#f39f76' 
-    }, 
-    info: { 
-      txt: 'Fullst!' 
-    } 
-  }, 
-  { 
-    id: 'n106', 
-    createdAt: 1112222, 
-    type: 'NoteTxt', 
-    isPinned: false, 
-    style: { 
-      backgroundColor: '#fff8b8' 
-    }, 
-    info: { 
-      txt: 'rinat!' 
-    } 
-  }, 
-  { 
-    id: 'n104', 
-    createdAt: 1112223, 
-    type: 'NoteImg', 
-    isPinned: false, 
-    style: { 
-      backgroundColor: '#f39f76' 
-    }, 
-    info: { 
-      url: 'img/h.png', 
-      title: 'Bobi and Me' 
-    } 
-  }, 
-//   { 
-//     id: 'n103', 
-//     createdAt: 1112224, 
-//     type: 'NoteTodos', 
-//     isPinned: false, 
-//     style: { 
-//       backgroundColor: '#d00' 
-//     }, 
-//     info: { 
-//       title: 'Get my stuff together', 
-//       todos: [ 
-//         { txt: 'Driving license', isDone: true }, 
-//         { txt: 'Coding power', isDone: false } 
-//       ] 
-//     } 
-//   }
+        notes = [
+            {
+                id: 'n101',
+                createdAt: 1112222,
+                type: 'NoteTxt',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#f39f76'
+                },
+                info: {
+                    txt: 'Fullstack Me Baby!'
+                }
+            },
+            //   { 
+            //     id: 'n102', 
+            //     createdAt: 1112223, 
+            //     type: 'NoteImg', 
+            //     isPinned: false, 
+            //     style: { 
+            //       backgroundColor: '#0d0' 
+            //     }, 
+            //     info: { 
+            //       url: 'img/h.png', 
+            //       title: 'Bobi and Me' 
+            //     } 
+            //   },
+            {
+                id: 'n103',
+                createdAt: 1112222,
+                type: 'NoteTxt',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#fff8b8'
+                },
+                info: {
+                    txt: 'by!'
+                }
+            },
+            {
+                id: 'n105',
+                createdAt: 1112222,
+                type: 'NoteTxt',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#f39f76'
+                },
+                info: {
+                    txt: 'Fullst!'
+                }
+            },
+            {
+                id: 'n106',
+                createdAt: 1112222,
+                type: 'NoteTxt',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#fff8b8'
+                },
+                info: {
+                    txt: 'rinat!'
+                }
+            },
+            {
+                id: 'n104',
+                createdAt: 1112223,
+                type: 'NoteImg',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#f39f76'
+                },
+                info: {
+                    url: 'img/h.png',
+                    title: 'Bobi and Me'
+                }
+            },
+            //   { 
+            //     id: 'n103', 
+            //     createdAt: 1112224, 
+            //     type: 'NoteTodos', 
+            //     isPinned: false, 
+            //     style: { 
+            //       backgroundColor: '#d00' 
+            //     }, 
+            //     info: { 
+            //       title: 'Get my stuff together', 
+            //       todos: [ 
+            //         { txt: 'Driving license', isDone: true }, 
+            //         { txt: 'Coding power', isDone: false } 
+            //       ] 
+            //     } 
+            //   }
 
         ]
         // books= []
@@ -307,11 +308,11 @@ function save(note) {
 
 function fetchBooks(term) {
     console.log(term);
-    
+
     return axios.get(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${term}`)
         .then(books => {
             console.log(books);
-            
+
             return books.data.items
         })
         .catch(err => {

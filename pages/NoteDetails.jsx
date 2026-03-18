@@ -57,10 +57,25 @@ export function NoteDetails({ noteId, onClose }) {
 
             <button onClick={onClose}>←</button>
 
-            <h1 className='title'>title</h1>
+             <input
+            className='note-input'
+            type="text"
+            placeholder="Title"
+            value={note.info.noteTitle || ''}
+            onChange={({ target }) => {
+                const updatedNote = {
+                    ...note,
+                    info: { ...note.info, noteTitle: target.value }
+                }
+                setNote(updatedNote)
+                keepsServis.save(updatedNote)
+            }}
+             style={{ backgroundColor: note.style.backgroundColor }}
+        />
             {note.type === 'NoteTxt' && (
                 <input className='note-input'
                     type="text"
+                     placeholder="write note..."
                     value={note.info.txt || ''}
                     onChange={handleChange1}
                      style={{ backgroundColor: note.style.backgroundColor }}
