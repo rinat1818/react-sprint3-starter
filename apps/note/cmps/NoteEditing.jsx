@@ -11,9 +11,6 @@ export function NoteEdit({ onSaveNote }) {
     const [note, setNote] = useState(keepsServis.getEmptyNote())
     const [showColors, setShowColors] = useState(false)
 
-
-
-
     function changeColor(color) {
         setNote(prev => ({
             ...prev,
@@ -23,21 +20,10 @@ export function NoteEdit({ onSaveNote }) {
             }
 
         }))
-        // console.log(color);
+       
         setShowColors(false)
     }
 
-    // function handleChange({ target }) {
-    //     const value = target.value
-
-    //     setNote(prev => ({
-    //         ...prev,
-    //         info: {
-    //             ...prev.info,
-    //             txt: value
-    //         }
-    //     }))
-    // }
     function handleChange({ target }) {
         const value = target.value
         setNote(prev => ({
@@ -84,7 +70,6 @@ export function NoteEdit({ onSaveNote }) {
         ev.preventDefault()
         onSaveNote(note)
             .then(() => setNote(keepsServis.getEmptyNote()))
-        // .then(setNote(keepsServis.getEmptyNote()))
 
     }
 
@@ -132,7 +117,8 @@ export function NoteEdit({ onSaveNote }) {
                         </button>
                         {/* <button>#</button> */}
 
-                        <button type="button" onClick={() => document.getElementById('img-upload').click()}>
+                        <button type="button" onClick={() => document.getElementById('img-upload').click()} 
+                             style={{ backgroundColor: note.style.backgroundColor }} >
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
                                 <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z" />
                             </svg>
@@ -143,8 +129,8 @@ export function NoteEdit({ onSaveNote }) {
                             type="file"
                             accept="image/*"
                             style={{ display: 'none' }}
-                              onClick={(ev) => { ev.target.value = null }}  
-                           
+                            onClick={(ev) => { ev.target.value = null }}
+
                             onChange={(ev) => {
                                 const file = ev.target.files[0]
                                 if (!file) return
@@ -158,30 +144,30 @@ export function NoteEdit({ onSaveNote }) {
                                 }
                                 reader.readAsDataURL(file)
                             }}
-//                             onChange={(ev) => {
-//     const file = ev.target.files[0]
-//     if (!file) return
-//     const reader = new FileReader()
-//     reader.onload = (e) => {
-//         const img = new Image()
-//         img.onload = () => {
-//             const canvas = document.createElement('canvas')
-//             const MAX = 400
-//             const ratio = Math.min(MAX / img.width, MAX / img.height)
-//             canvas.width = img.width * ratio
-//             canvas.height = img.height * ratio
-//             canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height)
-//             const compressed = canvas.toDataURL('image/jpeg', 0.5)
-//             setNote(prev => ({
-//                 ...prev,
-//                 type: 'NoteImg',
-//                 info: { ...prev.info, url: compressed, title: '' }
-//             }))
-//         }
-//          img.src = e.target.result
-//     }
-//     reader.readAsDataURL(file)
-// }}
+                        //                             onChange={(ev) => {
+                        //     const file = ev.target.files[0]
+                        //     if (!file) return
+                        //     const reader = new FileReader()
+                        //     reader.onload = (e) => {
+                        //         const img = new Image()
+                        //         img.onload = () => {
+                        //             const canvas = document.createElement('canvas')
+                        //             const MAX = 400
+                        //             const ratio = Math.min(MAX / img.width, MAX / img.height)
+                        //             canvas.width = img.width * ratio
+                        //             canvas.height = img.height * ratio
+                        //             canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height)
+                        //             const compressed = canvas.toDataURL('image/jpeg', 0.5)
+                        //             setNote(prev => ({
+                        //                 ...prev,
+                        //                 type: 'NoteImg',
+                        //                 info: { ...prev.info, url: compressed, title: '' }
+                        //             }))
+                        //         }
+                        //          img.src = e.target.result
+                        //     }
+                        //     reader.readAsDataURL(file)
+                        // }}
                         />
 
                         <button style={{ backgroundColor: note.style.backgroundColor }} onClick={hideGallery} className="save">Save</button>

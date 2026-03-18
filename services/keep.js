@@ -4,7 +4,7 @@ import { storageService } from './async-storage.service.js'
 const KEEP_KEY = 'keepdb'
 // NOTE_KEY
 
-_createKeeps()
+// _createKeeps()
 
 export const keepsServis = {
     query,
