@@ -2,7 +2,6 @@ const { useEffect, useState } = React
 
 import { NoteImg } from "./NoteImg.jsx";
 import { NoteTxt } from "./NoteTxt.jsx";
-import { keepsServis } from "../../../services/keep.js";
 import { ColorPicker } from "./ColorPicker.jsx";
 
 
