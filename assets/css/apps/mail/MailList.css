@@ -1,1 +1,159 @@
- /* mail list */
+/* Mail List */
+.mail-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.mail-list.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-state {
+    text-align: center;
+    color: #5f6368;
+}
+
+.empty-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.empty-state p {
+    font-size: 16px;
+    margin: 0;
+}
+
+/* Mail Link */
+.mail-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Mail Preview */
+.mail-preview {
+    display: grid;
+    grid-template-columns: auto 200px 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #f1f3f4;
+    cursor: pointer;
+    transition: background-color 0.1s;
+}
+
+.mail-preview:hover {
+    background-color: #f5f5f5;
+    box-shadow: inset 3px 0 0 #1a73e8;
+}
+
+.mail-preview.unread {
+    background-color: #f2f6fc;
+}
+
+.mail-preview.unread .mail-sender,
+.mail-preview.unread .mail-subject {
+    font-weight: 700;
+}
+
+.mail-preview.read {
+    background-color: white;
+}
+
+/* Mail Actions */
+.mail-actions {
+    display: flex;
+    gap: 4px;
+}
+
+.mail-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    opacity: 0.6;
+}
+
+.mail-actions button:hover {
+    background-color: #e0e0e0;
+    opacity: 1;
+}
+
+.star-btn.starred {
+    opacity: 1;
+}
+
+/* Mail Sender */
+.mail-sender {
+    font-size: 14px;
+    color: #202124;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Mail Content */
+.mail-content {
+    display: flex;
+    align-items: baseline;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.mail-subject {
+    font-size: 14px;
+    color: #202124;
+    white-space: nowrap;
+}
+
+.mail-separator {
+    color: #5f6368;
+    margin: 0 4px;
+    flex-shrink: 0;
+}
+
+.mail-body-preview {
+    font-size: 14px;
+    color: #5f6368;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Mail Date */
+.mail-date {
+    font-size: 12px;
+    color: #5f6368;
+    white-space: nowrap;
+}
+
+.mail-preview.unread .mail-date {
+    font-weight: 700;
+    color: #202124;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .mail-preview {
+        grid-template-columns: auto 1fr auto;
+    }
+    
+    .mail-sender {
+        display: none;
+    }
+    
+    .mail-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .mail-separator {
+        display: none;
+    }
+}
