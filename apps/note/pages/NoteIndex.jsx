@@ -6,6 +6,7 @@ import { NotePreview } from "../cmps/NotePreview.jsx";
 import { NoteDetails } from "../../../pages/NoteDetails.jsx";
 import { NoteHeader } from "../../../cmps/NoteHeader.jsx";
 import { NoteEdit } from "../cmps/NoteEditing.jsx";
+
 export function NoteIndex() {
 
     const [notes, setNotes] = useState(null)
@@ -43,9 +44,9 @@ export function NoteIndex() {
             })
     }
 
-    function removeNotes(notekId) {
-        return keepsServis.remove(notekId)
-            .then(() => setNotes(prev => prev.filter(note => note.id !== notekId)))
+    function removeNotes(noteId) {
+        return keepsServis.remove(noteId)
+            .then(() => setNotes(prev => prev.filter(note => note.id !== noteId)))
     }
 
     function onPinNote(note) {
