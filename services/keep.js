@@ -3,7 +3,7 @@ import { storageService } from './async-storage.service.js'
 
 const KEEP_KEY = 'keepdb'
 
-// _createKeeps()
+_createKeeps()
 
 export const keepsServis = {
     query,
@@ -45,6 +45,7 @@ function getDefaultFilter(filterBy = { txt: '', minSpeed: 0 }) {
     return { txt: filterBy.txt, minSpeed: filterBy.minSpeed }
 }
 
+
 function getEmptyNote(txt = '') {
     return {
         // id: utilService.makeId(),
@@ -67,7 +68,127 @@ function _createKeeps() {
 
     if (!notes || !notes.length) {
 
-          
+        notes = [
+            {
+                id: 'n101',
+                createdAt: 1112222,
+                type: 'NoteTxt',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#faafa8'
+                },
+                info: {
+                  noteTitle: "Lesson",
+                    txt: 'cr + sprint 3'
+                }
+            }, 
+            {
+                id: 'n102',
+                createdAt: 1112222,
+                type: 'NoteTxt',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#fff8b8'
+                },
+                info: {
+                    txt: 'New chapter coming soon'
+                }
+            },
+            {
+                id: 'n103',
+                createdAt: 1112223,
+                type: 'NoteImg',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#ffffff'
+                },
+                info: {
+                    url: 'img/gift.png',
+                   txt: 'Birthday present I want'
+                }
+            },
+            {
+                id: 'n104',
+                createdAt: 1112223,
+                type: 'NoteImg',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#b4ddd3',
+                },
+                info: {
+                    url: 'img/lego.png',
+                    txt: 'Buying Lego for Passover'
+                }
+            },
+            {
+                id: 'n105',
+                createdAt: 1112222,
+                type: 'NoteTxt',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#faafa8'
+                },
+                info: {
+                    txt: 'make schnitzels (So delicious :) )'
+                }
+            },
+            {
+                id: 'n106',
+                createdAt: 1112222,
+                type: 'NoteTxt',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#e2f6d3'
+                },
+                info: {
+                     noteTitle: "A difficult task",
+                    txt: 'Tidy up the room'
+                }
+            },
+            {
+                id: 'n107',
+                createdAt: 1112223,
+                type: 'NoteImg',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#d3bfdb'
+                },
+                info: {
+                    noteTitle: "A bear",
+                    url: 'img/bear.png',
+                    txt: 'so cute!'
+                }
+            },
+            {
+                id: 'n108',
+                createdAt: 1112223,
+                type: 'NoteImg',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#aeccdc'
+                },
+                info: {
+                    noteTitle: "Pesach!",
+                    url: 'img/fly.png',
+                    txt: 'Talk to Trump so we can fly'
+                }
+            },
+            {
+                id: 'n109',
+                createdAt: 1112222,
+                type: 'NoteTxt',
+                isPinned: false,
+                style: {
+                    backgroundColor: '#fff8b8'
+                },
+                info: {
+                    noteTitle: "To succeed in Sprint 3",
+                    txt: 'Mission completed!'
+                }
+            },
+         
+        ]
+        
         utilService.saveToStorage(KEEP_KEY, notes)
     }
 }
@@ -81,6 +202,7 @@ function _setNextPrevNoteId(note) {
         return note
     })
 }
+
 function getDefaultFilter() {
     return { txt: '' }
 }
@@ -147,6 +269,7 @@ function save(note) {
     if (note.id) {
         return storageService.put(KEEP_KEY, note)
     } else {
+      
         return storageService.post(KEEP_KEY, note)
     }
 }
