@@ -13,7 +13,6 @@ export const keepsServis = {
     getDefaultFilter,
     getSpeedStats,
     getVendorStats,
-    fetchBooks,
     getEmptyNote
 }
 
@@ -274,19 +273,4 @@ function save(note) {
     }
 }
 
-function fetchBooks(term) {
-    console.log(term);
-
-    return axios.get(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${term}`)
-        .then(books => {
-            console.log(books);
-
-            return books.data.items
-        })
-        .catch(err => {
-            console.log(err)
-            throw 'Oops... had a problem'
-        })
-        .finally(() => console.log('After service'))
-}
 
