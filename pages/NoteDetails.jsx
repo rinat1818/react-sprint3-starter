@@ -82,7 +82,7 @@ export function NoteDetails({ noteId, onClose }) {
                     />
                 )
             }
-             {note.type === 'NoteImg' && (
+             {/* {note.type === 'NoteImg' && (
             <div>
                 <img src={note.info.url} alt={note.info.title} />
                 <input
@@ -93,6 +93,19 @@ export function NoteDetails({ noteId, onClose }) {
                      style={{ backgroundColor: note.style.backgroundColor }}
                 />
             </div>
+        )} */}
+        {note.type === 'NoteImg' && (
+    <div>
+        <img src={note.info.url} alt={note.info.title} />
+        <input
+            className='note-input'
+            type="text"
+            placeholder="write note..."
+            value={note.info.txt || ''}
+            onChange={handleChange1}  
+            style={{ backgroundColor: note.style.backgroundColor }}
+        />
+    </div>
         )}
                 <button type="button" onClick={() => setShowColors(prev => !prev)}
                     style={{ backgroundColor: note.style.backgroundColor }}
