@@ -365,16 +365,13 @@ button {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.text {
-    font-weight: 400;
-}
 
 @media (max-width: 480px) {
     .note-list {
         columns: 1;
         padding: 10px;
     }
-
+    
     .note-list li {
         margin-bottom: 12px;
     }
@@ -384,9 +381,9 @@ button {
     position: relative;
     display: inline-flex;
     align-items: center;
-
-
-
+    
+    
+    
 }
 
 .search-wrapper input {
@@ -394,23 +391,23 @@ button {
     height: 24px;
     padding: 11px 0px;
     width: 295px;
-
+    
     color: #1f1f1f;
- 
+    
     border: none;
     outline: none;
-   
+    
     background-color: #e0e0e0;
-
+    
     border-radius: 8px;
 }
 
 @media (max-width: 480px) {
     .search-wrapper input {
         color: #1f1f1f;
-
+        
         width: 200px;
-
+        
     }
 }
 
@@ -439,7 +436,7 @@ button {
 }
 
 .note-img img {
-   
+    
     object-fit: cover;
     border-radius: 8px;
 }
@@ -447,5 +444,32 @@ button {
 .btn-d {
     border: none !important;
     ;
+    
+}
+.size-input-title {
+    font-weight: 400;
+    color: rgb(32, 33, 36);
+    font-size: 20px;
+    margin-bottom: 7px;
 
+    font-family: "Google Sans", "Roboto", arial, sans-serif;
+}
+.size-input{
+    font-family: "Google Sans Text";
+    /* font-weight: 400; */
+   font-size: 18px;
+}
+
+
+.text-title{
+    font-weight: 400;
+    color: rgb(32, 33, 36);
+    font-size: 20px;
+    margin-bottom: 7px;
+    font-family: "Google Sans", "Roboto", arial, sans-serif;
+}
+.text{
+    font-weight: 400;
+     font-family: "Google Sans Text";
+      font-size: 18px;
 }

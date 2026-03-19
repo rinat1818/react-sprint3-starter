@@ -82,18 +82,7 @@ export function NoteDetails({ noteId, onClose }) {
                     />
                 )
             }
-             {/* {note.type === 'NoteImg' && (
-            <div>
-                <img src={note.info.url} alt={note.info.title} />
-                <input
-                    className='note-input'
-                    type="text"
-                    value={note.info.title || ''}
-                    onChange={handleChangeTitle}  
-                     style={{ backgroundColor: note.style.backgroundColor }}
-                />
-            </div>
-        )} */}
+       
         {note.type === 'NoteImg' && (
     <div>
         <img src={note.info.url} alt={note.info.title} />
