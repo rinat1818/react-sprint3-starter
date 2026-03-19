@@ -1,5 +1,3 @@
-
-
 const { Link, NavLink } = ReactRouterDOM
 const { useState, useEffect } = React
 
@@ -31,7 +29,7 @@ export function NoteHeader({ filterBy, setFilterBy }) {
                 />
                 <button onClick={() => {
                     setShowSearch(false)
-                    setFilterByToEdit(prev => ({ ...prev, txt: '' }))  
+                    setFilterByToEdit(prev => ({ ...prev, txt: '' }))
                 }}>✕</button>
             </div>
         )}

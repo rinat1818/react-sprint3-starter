@@ -2,7 +2,6 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const KEEP_KEY = 'keepdb'
-// NOTE_KEY
 
 // _createKeeps()
 
@@ -11,24 +10,12 @@ export const keepsServis = {
     get,
     remove,
     save,
-    // getEmptyNote,
     getDefaultFilter,
     getSpeedStats,
     getVendorStats,
     fetchBooks,
-    // getEmptyBook,
     getEmptyNote
 }
-
-// function query(filterBy = {}) {
-//     return storageService.query(KEEP_KEY).then(books => {
-//         if (filterBy.txt) {
-//             const regExp = new RegExp(filterBy.txt, 'i')
-//             books = books.filter(book => regExp.test(book.title))
-//         }
-//         return books
-//     })
-// }
 
 function query(filterBy = {}) {
     return storageService.query(KEEP_KEY).then(notes => {
@@ -58,22 +45,6 @@ function getDefaultFilter(filterBy = { txt: '', minSpeed: 0 }) {
     return { txt: filterBy.txt, minSpeed: filterBy.minSpeed }
 }
 
-
-// function getEmptyNote(title = '', description = '', amount = 0) {
-//   return {
-//     createdAt,
-//     type,
-//     isPinned,
-//     style: {
-//       backgroundColo,
-//     },
-//     info: {
-//       txt,
-//     }
-
-//   }
-// }
-
 function getEmptyNote(txt = '') {
     return {
         // id: utilService.makeId(),
@@ -96,105 +67,7 @@ function _createKeeps() {
 
     if (!notes || !notes.length) {
 
-        notes = [
-            {
-                id: 'n101',
-                createdAt: 1112222,
-                type: 'NoteTxt',
-                isPinned: false,
-                style: {
-                    backgroundColor: '#f39f76'
-                },
-                info: {
-                    txt: 'Fullstack Me Baby!'
-                }
-            },
-            //   { 
-            //     id: 'n102', 
-            //     createdAt: 1112223, 
-            //     type: 'NoteImg', 
-            //     isPinned: false, 
-            //     style: { 
-            //       backgroundColor: '#0d0' 
-            //     }, 
-            //     info: { 
-            //       url: 'img/h.png', 
-            //       title: 'Bobi and Me' 
-            //     } 
-            //   },
-            {
-                id: 'n103',
-                createdAt: 1112222,
-                type: 'NoteTxt',
-                isPinned: false,
-                style: {
-                    backgroundColor: '#fff8b8'
-                },
-                info: {
-                    txt: 'by!'
-                }
-            },
-            {
-                id: 'n105',
-                createdAt: 1112222,
-                type: 'NoteTxt',
-                isPinned: false,
-                style: {
-                    backgroundColor: '#f39f76'
-                },
-                info: {
-                    txt: 'Fullst!'
-                }
-            },
-            {
-                id: 'n106',
-                createdAt: 1112222,
-                type: 'NoteTxt',
-                isPinned: false,
-                style: {
-                    backgroundColor: '#fff8b8'
-                },
-                info: {
-                    txt: 'rinat!'
-                }
-            },
-            {
-                id: 'n104',
-                createdAt: 1112223,
-                type: 'NoteImg',
-                isPinned: false,
-                style: {
-                    backgroundColor: '#f39f76'
-                },
-                info: {
-                    url: 'img/h.png',
-                    title: 'Bobi and Me'
-                }
-            },
-            //   { 
-            //     id: 'n103', 
-            //     createdAt: 1112224, 
-            //     type: 'NoteTodos', 
-            //     isPinned: false, 
-            //     style: { 
-            //       backgroundColor: '#d00' 
-            //     }, 
-            //     info: { 
-            //       title: 'Get my stuff together', 
-            //       todos: [ 
-            //         { txt: 'Driving license', isDone: true }, 
-            //         { txt: 'Coding power', isDone: false } 
-            //       ] 
-            //     } 
-            //   }
-
-        ]
-        // books= []
-        // const vendors = ['audu', 'fiak', 'subali', 'mitsu']
-        // for (let i = 0; i < 6; i++) {
-        //     const vendor = vendors[utilService.getRandomIntInclusive(0, vendors.length - 1)]
-        //     notes.push(_createNote(vendor, utilService.getRandomIntInclusive(80, 300)))
-        // }
+          
         utilService.saveToStorage(KEEP_KEY, notes)
     }
 }
@@ -208,20 +81,6 @@ function _setNextPrevNoteId(note) {
         return note
     })
 }
-// function getEmptyNote(vendor = '', maxSpeed = '') {
-//     return { vendor, maxSpeed }
-// }
-// function getEmptyBook(title = '', description = '', amount = 0) {
-//   return {
-//     title,
-//     description,
-//     listPrice: {
-//       amount,
-//       currencyCode: 'EUR',
-//       isOnSale: false
-//     }
-//   }
-// }
 function getDefaultFilter() {
     return { txt: '' }
 }
@@ -248,19 +107,6 @@ function getVendorStats() {
             return data
         })
 }
-
-// function _createNotes() {
-//     let notes = utilService.loadFromStorage(NOTE_KEY)
-//     if (!notes || !notes.length) {
-//         notes = []
-//         const vendors = ['audu', 'fiak', 'subali', 'mitsu']
-//         for (let i = 0; i < 6; i++) {
-//             const vendor = vendors[utilService.getRandomIntInclusive(0, vendors.length - 1)]
-//             notes.push(_createNote(vendor, utilService.getRandomIntInclusive(80, 300)))
-//         }
-//         utilService.saveToStorage(NOTE_KEY, notes)
-//     }
-// }
 
 function _createNote(vendor, maxSpeed = 250) {
     const note = getEmptyNote(vendor, maxSpeed)
@@ -301,7 +147,6 @@ function save(note) {
     if (note.id) {
         return storageService.put(KEEP_KEY, note)
     } else {
-        // book.thubnail=""
         return storageService.post(KEEP_KEY, note)
     }
 }
@@ -322,13 +167,3 @@ function fetchBooks(term) {
         .finally(() => console.log('After service'))
 }
 
-
-// function ask() {
-// 	return axios.get('https://yesno.wtf/api')
-//         .then(res => res.data)
-//         .catch(err => {
-//             console.log(err)
-//             throw 'Oops... had a problem'
-//         })
-//         .finally(() => console.log('After service'))
-// }
